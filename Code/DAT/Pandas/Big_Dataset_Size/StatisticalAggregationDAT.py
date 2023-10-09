@@ -1,8 +1,6 @@
 
 import pandas as pd
 
-############## COUNT MISSING VALUES AND REMOVE THEM ###############
-
 df = pd.read_csv('Data/big_dataset.csv')
 
 def count(df:pd.DataFrame):

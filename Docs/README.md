@@ -19,3 +19,28 @@ performed.
 
 Big Dataset used: 2017 US Census Demographic Data
 [Link to the dataset](https://www.kaggle.com/datasets/muonneutrino/us-census-demographic-data)
+
+Different techniques to evaluate the libraries: 
+- IO Tasks
+- Handling missing data 
+    - count missing data 
+    - drop missing data
+    - fill missing data with value
+- Row Column Operations
+- Statistical Aggregation
+    - columnwise dataframe counting
+    - summing
+    - Mean
+    - Min / Max
+    - Unique Values
+- String Operations 
+- Converting to different types
+    - transform to json
+    - transform to parquet
+- Self generated time series 
+- Viewing data 
+    - head
+    - tail
+    - dtypes
+    - describe
+    - shape
