@@ -21,6 +21,6 @@ df = pd.read_csv('Data/big_dataset.csv')
 # Convert the DataFrame to JSON format
 df.to_json(f"{folder}/Pandas_Big.json")  # Converts each row to a JSON object
 
-# Convert the DataFrame to HDF5 format
+# Convert the DataFrame to parquet format
 df.to_parquet(f"{folder}/Pandas_Big.parquet")
 
