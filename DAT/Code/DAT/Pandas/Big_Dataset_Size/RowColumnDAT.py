@@ -30,8 +30,8 @@ def concat_dataframes(df1, df2):
 
 # # Row Column Operations
 
-df = pd.read_csv('/Users/apoorvanp/GreenLab-Code-Repo/goGreen/Data/big_dataset.csv')
-df_samp = pd.read_csv('/Users/apoorvanp/GreenLab-Code-Repo/goGreen/Data/big_dataset.csv')
+df = pd.read_csv('Data/big_dataset.csv')
+df_samp = pd.read_csv('Data/big_dataset.csv')
 drop(df, cnameArray=['Professional', 'Unemployment'])
 groupby(df, cname='State')
 SAMPLE_SIZE = 20000

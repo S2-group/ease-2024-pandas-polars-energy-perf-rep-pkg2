@@ -26,8 +26,8 @@ def concat_dataframes(df1, df2):
 
 # # Row Column Operations
 
-df = pl.read_csv('/Users/apoorvanp/GreenLab-Code-Repo/goGreen/Data/big_dataset.csv')
-df_samp = pl.read_csv('/Users/apoorvanp/GreenLab-Code-Repo/goGreen/Data/big_dataset.csv')
+df = pl.read_csv('Data/big_dataset.csv')
+df_samp = pl.read_csv('Data/big_dataset.csv')
 
 # print(drop(df, cnameArray=['Professional', 'Unemployment']))
 # groupby(df, cname='State')

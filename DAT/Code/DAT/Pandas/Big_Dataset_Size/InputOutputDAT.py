@@ -28,14 +28,13 @@ def save_parquet(df, path):
     return df.to_parquet(path)
 
 
+folder = 'Code/DAT/Pandas/Big_Dataset_Size/OUTPUT_FILES'
 # # Read operations
-df = load_json(path='/Users/apoorvanp/GreenLab-Code-Repo/goGreen/Code/DAT/Pandas/Big_Dataset_Size/OUTPUT_FILES'
-                    '/Pandas_Big.json')
+df = load_json(path=f"{folder}/Pandas_Big.json")
 
-df = load_csv(path='/Users/apoorvanp/GreenLab-Code-Repo/goGreen/Data/big_dataset.csv')
+df = load_csv(path='Data/big_dataset.csv')
 
-df = load_parquet(path='/Users/apoorvanp/GreenLab-Code-Repo/goGreen/Code/DAT/Pandas/Big_Dataset_Size/OUTPUT_FILES'
-                       '/Pandas_Big.parquet')
+df = load_parquet(path=f"{folder}/Pandas_Big.parquet")
 
 save_csv(df, f'df_adult_pandas_1.csv')
 save_json(df, f'df_adult_pandas_1.json')
