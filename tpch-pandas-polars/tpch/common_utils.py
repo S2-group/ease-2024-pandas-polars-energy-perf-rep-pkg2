@@ -8,7 +8,7 @@ from linetimer import CodeTimer
 INCLUDE_IO = bool(os.environ.get("INCLUDE_IO", False))
 SHOW_RESULTS = bool(os.environ.get("SHOW_RESULTS", True))
 LOG_TIMINGS = bool(os.environ.get("LOG_TIMINGS", True))
-SCALE_FACTOR = os.environ.get("SCALE_FACTOR", "10")
+SCALE_FACTOR = os.environ.get("SCALE_FACTOR", "1")
 WRITE_PLOT = bool(os.environ.get("WRITE_PLOT", True))
 FILE_TYPE = os.environ.get("FILE_TYPE", "parquet")
 SPARK_LOG_LEVEL = os.environ.get("SPARK_LOG_LEVEL", "ERROR")
