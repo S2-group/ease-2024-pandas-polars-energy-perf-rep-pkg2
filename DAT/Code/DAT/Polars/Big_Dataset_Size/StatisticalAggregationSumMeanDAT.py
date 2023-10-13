@@ -16,25 +16,13 @@ def sum(df: pl.DataFrame):
 def mean(df: pl.DataFrame):
     return df.mean()
 
-# Define a function to find the minimum value of all columns
-def min(df: pl.DataFrame):
-    return df.min()
 
-# Define a function to find the maximum value of all columns
-def max(df: pl.DataFrame):
-    return df.max()
-
-# Define a function to find unique values in a column
-def unique(df: pl.DataFrame):
-    return df.unique(maintain_order=True)
 
 # Perform statistical operations
 dfCount = count(df)
 summedIncome = sum(df['Income'])
 MeanIncome = mean(df['Income'])
-MinIncome = min(df['Income'])
-MaxIncome = max(df['Income'])
-States = unique(df['State'])
+
 
 # Print the results
-print(f"{dfCount}\nsummedIncome: {summedIncome},\n MeanIncome: {MeanIncome},\n MinIncome: {MinIncome},\n MaxIncome: {MaxIncome},\n States: {States}")
+print(f"{dfCount}\nsummedIncome: {summedIncome},\n MeanIncome: {MeanIncome}")
