@@ -18,8 +18,8 @@ def unique(df:pd.DataFrame):
 ### Statistical Operations
 
 
-MinCommute = min(df['MeanCommute'])
-MaxCommute = max(df['MeanCommute'])
-States = unique(df['MeanCommute'])
+MinIncome = min(df['MeanIncome'])
+MaxIncome = max(df['MeanIncome'])
+States = unique(df['MeanIncome'])
 
-print(f"\n MinCommute: {MinCommute},\n MaxCommute: {MaxCommute},\n States: {States}")
+print(f"\n MinIncome: {MinIncome},\n MaxIncome: {MaxIncome},\n States: {States}")
