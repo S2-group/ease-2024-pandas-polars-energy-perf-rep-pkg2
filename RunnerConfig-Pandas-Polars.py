@@ -13,6 +13,7 @@ from os.path import dirname, realpath
 
 import subprocess
 import signal
+import time
 import shlex
 import os
 import pandas as pd
@@ -91,7 +92,6 @@ class RunnerConfig:
         Activities after starting the run should also be performed here."""
         library = context.run_variation['library']
         dataframe_size = context.run_variation['dataframe_size']
-        workload = context.run_variation['workload']
 
         ### mapper to call the particular python file by name based on the factors 
         # start the target
@@ -105,8 +105,11 @@ class RunnerConfig:
     def start_measurement(self, context: RunnerContext) -> None:
         """Perform any activity required for starting measurements."""
         energy_profiler_cmd = f'powerjoular -l -p {self.target.pid} -f {context.run_dir / "powerjoular.csv"}'
+        # do we need to make it sleep before measurign as well?
+        time.sleep(1) # allow the process to run a little before measuring
         self.energy_profiler = subprocess.Popen(shlex.split(energy_profiler_cmd))
 
+        # check for etimes - doesn't make sense to take mean of it since its not the right value of time
         performance_profiler_cmd = f"ps -p {self.target_pid} --noheader -o '%cpu %mem etimes'"
         timer_cmd = f"while true; do {performance_profiler_cmd}; sleep 1; done"
         self.performance_profiler = subprocess.Popen(['sh', '-c', timer_cmd],
@@ -117,7 +120,7 @@ class RunnerConfig:
 
     def interact(self, context: RunnerContext) -> None:
         """Perform any interaction with the running target system here, or block here until the target finishes."""
-
+        self.target.wait()
         output.console_log("Config.interact() called!")
 
     def stop_measurement(self, context: RunnerContext) -> None:
