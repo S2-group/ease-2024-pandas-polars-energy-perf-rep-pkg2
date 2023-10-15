@@ -16,7 +16,7 @@ import signal
 import shlex
 import os
 import pandas as pd
-
+import psutil
 
 class RunnerConfig:
     ROOT_DIR = Path(dirname(realpath(__file__)))
@@ -60,7 +60,8 @@ class RunnerConfig:
     def create_run_table_model(self) -> RunTableModel:
         """Create and return the run_table model here. A run_table is a List (rows) of tuples (columns),
         representing each run performed"""
-        factor1 = FactorModel("run_number", ['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7', 'r8', 'r9', 'r10'])
+        factor1 = FactorModel(
+            "run_number", ['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7', 'r8', 'r9', 'r10'])
         factor2 = FactorModel("library", ['Pandas', 'Polars'])
         factor3 = FactorModel("dataframe_size", ['Big', 'Small'])
         self.run_table_model = RunTableModel(
@@ -82,10 +83,35 @@ class RunnerConfig:
     def before_run(self) -> None:
         """Perform any activity required before starting a run.
         No context is available here as the run is not yet active (BEFORE RUN)"""
-        ###### Need to kill all other unwanted processes 
 
-        # Run the Bash command using subprocess
-        subprocess.run(bash_command, shell=True, check=True)
+        # Need to kill all other unwanted processes
+        # Get a list of all running processes
+        all_processes = [p.info for p in psutil.process_iter(
+            attrs=['pid', 'name', 'cpu_percent'])]
+
+        # Sort the processes by CPU utilization in descending order
+        sorted_processes = sorted(
+            all_processes, key=lambda x: x['cpu_percent'], reverse=True)
+
+        # Filter out system processes and the current script
+        filtered_processes = [p for p in sorted_processes if not (
+            p['name'] in ['python', 'python3', 'bash', 'sh'] or
+            psutil.Process(p['pid']).parent().name() in [
+                'python', 'python3', 'bash', 'sh']
+        )]
+
+        # Select the top 10 non-system, unrelated processes
+        top_processes = filtered_processes[:10]
+
+        # Kill the top 10 processes
+        for process in top_processes:
+            pid = process['pid']
+            try:
+                process_to_kill = psutil.Process(pid)
+                process_to_kill.terminate()  # Terminate the process
+                print(f"Killed process with PID {pid}")
+            except psutil.NoSuchProcess:
+                print(f"Process with PID {pid} no longer exists")
 
         output.console_log("Config.before_run() called!")
 
@@ -97,9 +123,9 @@ class RunnerConfig:
         dataframe_size = context.run_variation['dataframe_size']
         workload = context.run_variation['workload']
 
-        ### mapper to call the particular python file by name based on the factors 
+        # mapper to call the particular python file by name based on the factors
         # start the target
-        ### mention path cwd = self.ROOT_DIR
+        # mention path cwd = self.ROOT_DIR
         self.target = subprocess.Popen(['python', """file name"""],
                                        stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=self.ROOT_DIR,
                                        )
@@ -109,7 +135,8 @@ class RunnerConfig:
     def start_measurement(self, context: RunnerContext) -> None:
         """Perform any activity required for starting measurements."""
         energy_profiler_cmd = f'powerjoular -l -p {self.target.pid} -f {context.run_dir / "powerjoular.csv"}'
-        self.energy_profiler = subprocess.Popen(shlex.split(energy_profiler_cmd))
+        self.energy_profiler = subprocess.Popen(
+            shlex.split(energy_profiler_cmd))
 
         performance_profiler_cmd = f"ps -p {self.target_pid} --noheader -o '%cpu %mem etimes'"
         timer_cmd = f"while true; do {performance_profiler_cmd}; sleep 1; done"
@@ -126,7 +153,8 @@ class RunnerConfig:
 
     def stop_measurement(self, context: RunnerContext) -> None:
         """Perform any activity here required for stopping measurements."""
-        os.kill(self.energy_profiler.pid, signal.SIGINT)  # graceful shutdown of powerjoular
+        os.kill(self.energy_profiler.pid,
+                signal.SIGINT)  # graceful shutdown of powerjoular
         self.energy_profiler.wait()
         self.performance_profiler.kill()
         self.performance_profiler.wait()
@@ -147,8 +175,10 @@ class RunnerConfig:
         output.console_log("Config.populate_run_data() called!")
         # powerjoular.csv - Power consumption of the whole system
         # powerjoular.csv-PID.csv - Power consumption of that specific process
-        df = pd.read_csv(context.run_dir / f"powerjoular.csv-{self.target.pid}.csv")
-        psdf = pd.DataFrame(columns=['cpu_usage', 'memory_usage', 'elapsed_time'])
+        df = pd.read_csv(context.run_dir /
+                         f"powerjoular.csv-{self.target.pid}.csv")
+        psdf = pd.DataFrame(
+            columns=['cpu_usage', 'memory_usage', 'elapsed_time'])
         for i, l in enumerate(self.performance_profiler.stdout.readlines()):
             decoded_line = l.decode('ascii').strip()
             decoded_arr = decoded_line.split()
