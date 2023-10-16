@@ -61,11 +61,11 @@ class RunnerConfig:
     def create_run_table_model(self) -> RunTableModel:
         """Create and return the run_table model here. A run_table is a List (rows) of tuples (columns),
         representing each run performed"""
-        factor1 = FactorModel("run_number", ['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7', 'r8', 'r9', 'r10'])
-        factor2 = FactorModel("library", ['Pandas', 'Polars'])
+        # factor1 = FactorModel("run_number", ['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7', 'r8', 'r9', 'r10'])
+        # factor2 = FactorModel("library", ['Pandas', 'Polars'])
         factor3 = FactorModel("dataframe_size", ['Big', 'Small'])
         self.run_table_model = RunTableModel(
-            factors=[factor1, factor2, factor3],
+            factors=[factor3],
             # exclude_variations=[
             #     {factor1: ['example_treatment1']},                   # all runs having treatment "example_treatment1" will be excluded
             #     {factor1: ['example_treatment2'], factor2: [True]},  # all runs having the combination ("example_treatment2", True) will be excluded
@@ -96,7 +96,7 @@ class RunnerConfig:
         ### mapper to call the particular python file by name based on the factors 
         # start the target
         ### mention path cwd = self.ROOT_DIR
-        self.target = subprocess.Popen(['python', """file name"""],
+        self.target = subprocess.Popen(['python', 'DAT/Code/DAT/Pandas/Big_Dataset_Size/ViewData.py'],
                                        stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=self.ROOT_DIR,
                                        )
 
@@ -109,7 +109,7 @@ class RunnerConfig:
         time.sleep(1) # allow the process to run a little before measuring
         self.energy_profiler = subprocess.Popen(shlex.split(energy_profiler_cmd))
 
-        # check for etimes - doesn't make sense to take mean of it since its not the right value of time
+        # check for etimes - doesn't make sense to take mean of it since its not the right value of 
         performance_profiler_cmd = f"ps -p {self.target_pid} --noheader -o '%cpu %mem etimes'"
         timer_cmd = f"while true; do {performance_profiler_cmd}; sleep 1; done"
         self.performance_profiler = subprocess.Popen(['sh', '-c', timer_cmd],
