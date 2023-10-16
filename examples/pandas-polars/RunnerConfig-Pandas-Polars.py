@@ -96,7 +96,7 @@ class RunnerConfig:
         ### mapper to call the particular python file by name based on the factors 
         # start the target
         ### mention path cwd = self.ROOT_DIR
-        self.target = subprocess.Popen(['python', 'DAT/Code/DAT/Pandas/Big_Dataset_Size/ViewData.py']
+        self.target = subprocess.Popen(['python3', 'DAT/Code/DAT/Pandas/Big_Dataset_Size/ViewData.py']
                                     #    stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=self.ROOT_DIR,
                                        )
         print("hellooooooo I am here", self.target.pid)
