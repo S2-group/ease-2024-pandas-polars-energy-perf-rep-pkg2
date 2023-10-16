@@ -105,7 +105,7 @@ class RunnerConfig:
         #   cpu utilization of the process in "##.#" format.  Currently, it is the CPU time used
         #   divided by the time the process has been running (cputime/realtime ratio), expressed
         #   as a percentage.  It will not add up to 100% unless you are lucky.  (alias pcpu).
-        profiler_cmd = f'ps -p {self.target.pid} --noheader -o %cpu %mem etimes'
+        profiler_cmd = f'ps -p {self.target.pid} --noheader -o %cpu,%mem'
         wrapper_script = f'''
         while true; do {profiler_cmd}; sleep 1; done
         '''
