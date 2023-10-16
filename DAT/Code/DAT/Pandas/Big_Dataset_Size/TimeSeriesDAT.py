@@ -6,7 +6,7 @@ end_date = "2033-01-10"
 date_range = pd.date_range(start=start_date, end=end_date)
 
 
-df = pd.read_csv('/Users/karolinabargiel/goGreen/DAT/Data/big_dataset.csv')
+df = pd.read_csv('../../../../Data/big_dataset.csv')
 
 
 # Generate random time series data

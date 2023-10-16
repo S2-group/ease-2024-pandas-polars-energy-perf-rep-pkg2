@@ -4,7 +4,7 @@ import pandas as pd
 
 ############## COUNT MISSING VALUES AND REMOVE THEM ###############
 
-df = pd.read_csv('Data/big_dataset.csv')
+df = pd.read_csv('../../../../Data/big_dataset.csv')
 df_drop = df.copy()
 df_fill = df.copy()
 

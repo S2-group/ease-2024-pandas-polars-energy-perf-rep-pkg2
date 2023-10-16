@@ -3,7 +3,7 @@ import os, shutil
 import pandas as pd
 
 
-folder = 'Code/DAT/Pandas/Big_Dataset_Size/OUTPUT_FILES'
+folder = './OUTPUT_FILES'
 for filename in os.listdir(folder):
     file_path = os.path.join(folder, filename)
     try:
@@ -16,7 +16,7 @@ for filename in os.listdir(folder):
 
 
 # Load the CSV file into a Pandas DataFrame
-df = pd.read_csv('Data/big_dataset.csv')
+df = pd.read_csv('../../../../Data/big_dataset.csv')
 
 # Convert the DataFrame to JSON format
 df.to_json(f"{folder}/Pandas_Big.json")  # Converts each row to a JSON object
