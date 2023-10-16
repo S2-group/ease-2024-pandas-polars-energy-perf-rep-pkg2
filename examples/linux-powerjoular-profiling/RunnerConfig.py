@@ -83,7 +83,7 @@ class RunnerConfig:
         cpu_limit = context.run_variation['cpu_limit']
 
         # start the target
-        self.target = subprocess.Popen(['python3', 'DAT/Code/DAT/Pandas/Big_Dataset_Size/ViewData.py'],
+        self.target = subprocess.Popen(['python3', './primer.py'],
             stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=self.ROOT_DIR,
         )
 
