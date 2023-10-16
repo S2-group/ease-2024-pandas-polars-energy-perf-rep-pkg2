@@ -17,7 +17,7 @@ import time
 import shlex
 import os
 import pandas as pd
-
+import random
 
 class RunnerConfig:
     ROOT_DIR = Path(dirname(realpath(__file__)))
@@ -37,6 +37,20 @@ class RunnerConfig:
     """The time Experiment Runner will wait after a run completes.
     This can be essential to accommodate for cooldown periods on some systems."""
     time_between_runs_in_ms: int = 1000
+
+    file_names = [
+    'FileTypes.py',
+    'InputOutputDAT.py',
+    'MissingDataDAT.py',
+    'RowColumnDAT.py',
+    'StatisticalAggregationMinMaxUnique.py',
+    'StatisticalAggregationSumMeanDAT.py',
+    'TimeSeriesDAT.py',
+    'ViewData.py'
+    ]
+    num_runs = 10
+    pandas_execution_counts = {file_name: 0 for file_name in file_names}
+    polars_execution_counts = {file_name: 0 for file_name in file_names}
 
     # Dynamic configurations can be one-time satisfied here before the program takes the config as-is
     # e.g. Setting some variable based on some criteria
@@ -90,15 +104,41 @@ class RunnerConfig:
         """Perform any activity required for starting the run here.
         For example, starting the target system to measure.
         Activities after starting the run should also be performed here."""
-        # library = context.run_variation['library']
-        # dataframe_size = context.run_variation['dataframe_size']
 
+        ### Mehdi & Pouyeh attempt
+        library = context.run_variation['library']
+        dataframe_size = context.run_variation['dataframe_size']
+        if(dataframe_size == "Big"):
+            folder = "Big_Dataset_Size"
+        else:
+            folder = "Small_Dataset_Size"
+        # todo: determine script to be executed randomly !
+        random.shuffle(self.file_names)
+        if(library == "Pandas"):
+            cur_lib =  self.pandas_execution_counts
+        else:
+            cur_lib = self.polars_execution_counts
+        while any(count < self.num_runs for count in cur_lib.values()):
+            # Randomly select a file
+            file_name = random.choice(self.file_names)
+
+            # Check if the file can be executed again
+            if self.cur_lib[file_name] < self.num_runs:
+                # Execute the file
+                subprocess.run(['python', f'DAT/Code/DAT/{library}/{folder}/{file_name}'])
+
+                # Increment the execution count
+                self.execution_counts[file_name] += 1
+
+
+        
+        
         ### mapper to call the particular python file by name based on the factors 
         # start the target
         ### mention path cwd = self.ROOT_DIR
-        self.target = subprocess.Popen(['python3', 'DAT/Code/DAT/Pandas/Big_Dataset_Size/ViewData.py'],
-                                        stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=self.ROOT_DIR,
-                                       )
+        #self.target = subprocess.Popen(['python', 'DAT/Code/DAT/Pandas/Big_Dataset_Size/ViewData.py']
+                                    #    stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=self.ROOT_DIR,
+                                       #)
         print("hellooooooo I am here", self.target.pid)
 
         output.console_log("Config.start_run() called!")
