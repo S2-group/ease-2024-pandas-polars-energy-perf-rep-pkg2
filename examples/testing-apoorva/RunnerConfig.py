@@ -111,7 +111,7 @@ class RunnerConfig:
         self.energy_profiler = subprocess.Popen(shlex.split(energy_profiler_cmd))
 
         # check for etimes - doesn't make sense to take mean of it since its not the right value of 
-        performance_profiler_cmd = f"ps -p {self.target.pid} --noheader -o '%cpu %mem etimes'"
+        performance_profiler_cmd = f"ps -p {self.target.pid} --noheader -o '%cpu,%mem,etimes'"
         timer_cmd = f"while true; do {performance_profiler_cmd}; sleep 1; done"
         self.performance_profiler = subprocess.Popen(['sh', '-c', timer_cmd],
                                                      stdout=subprocess.PIPE, stderr=subprocess.PIPE
@@ -162,7 +162,6 @@ class RunnerConfig:
             'ps_avg_cpu': round(psdf['cpu_usage'].mean(), 3),
             'ps_avg_mem': round(psdf['memory_usage'].mean(), 3),
             'avg_elapsed_time': round(psdf['elapsed_time'].mean(), 3),
-            'joular_avg_cpu': round(df['CPU Utilization'].sum(), 3),
             'total_energy': round(df['CPU Power'].sum(), 3),
         }
         return run_data
