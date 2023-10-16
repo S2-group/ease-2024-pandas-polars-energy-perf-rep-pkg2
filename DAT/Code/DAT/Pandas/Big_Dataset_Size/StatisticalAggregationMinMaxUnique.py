@@ -1,7 +1,7 @@
 
 import pandas as pd
 
-df = pd.read_csv('Data/big_dataset.csv')
+df = pd.read_csv('../../../../Data/big_dataset.csv')
 
 
 # min
