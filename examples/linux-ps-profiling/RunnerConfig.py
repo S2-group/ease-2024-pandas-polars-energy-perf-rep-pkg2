@@ -87,7 +87,9 @@ class RunnerConfig:
         pin_core  = context.run_variation['pin_core']
 
         # start the target
-        self.target = subprocess.Popen(['./primer'],
+        self.target = subprocess.Popen(['./prime.py'],
+                                       
+        # 'C:/Users/ASUS/Desktop/Erasmus Masters/VU/Green Lab/Project/goGreen/DAT/Code/DAT/Pandas/Small_Dataset_Size/ViewData.py
             stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=self.ROOT_DIR,
         )
 
