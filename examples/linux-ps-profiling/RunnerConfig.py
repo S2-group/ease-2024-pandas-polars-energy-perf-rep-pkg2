@@ -141,15 +141,19 @@ class RunnerConfig:
         You can also store the raw measurement data under `context.run_dir`
         Returns a dictionary with keys `self.run_table_model.data_columns` and their values populated"""
 
-        df = pd.DataFrame(columns=['cpu_usage'])
+        df = pd.DataFrame(columns=['cpu_usage', 'mem_usage'])
         for i, l in enumerate(self.profiler.stdout.readlines()):
-            cpu_usage=float(l.decode('ascii').strip())
-            df.loc[i] = [cpu_usage]
+            decoded_line = l.decode('ascii').strip()
+            decoded_arr = decoded_line.split()
+            cpu_usage = float(decoded_arr[0])
+            mem_usage = float(decoded_arr[1])
+            df.loc[i] = [cpu_usage, mem_usage]
         
         df.to_csv(context.run_dir / 'raw_data.csv', index=False)
 
         run_data = {
-            'avg_cpu': round(df['cpu_usage'].mean(), 3)
+            'avg_cpu': round(df['cpu_usage'].mean(), 3),
+            'avg_mem': round(df['mem_usage'].mean(), 3),
         }
         return run_data
 
