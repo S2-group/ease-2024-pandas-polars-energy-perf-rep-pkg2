@@ -111,7 +111,7 @@ class RunnerConfig:
         self.energy_profiler = subprocess.Popen(shlex.split(energy_profiler_cmd))
 
         # check for etimes - doesn't make sense to take mean of it since its not the right value of 
-        performance_profiler_cmd = f"ps -p {self.target.pid} --noheader -o '%cpu,%mem,etimes'"
+        performance_profiler_cmd = f"ps -l -p {self.target.pid} --noheader -o '%cpu,%mem,etimes'"
         timer_cmd = f"while true; do {performance_profiler_cmd}; sleep 1; done"
         self.performance_profiler = subprocess.Popen(['sh', '-c', timer_cmd],
                                                      stdout=subprocess.PIPE, stderr=subprocess.PIPE
