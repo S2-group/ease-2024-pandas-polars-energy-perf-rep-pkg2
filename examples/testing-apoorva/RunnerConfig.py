@@ -63,7 +63,7 @@ class RunnerConfig:
         representing each run performed"""
         # factor1 = FactorModel("run_number", ['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7', 'r8', 'r9', 'r10'])
         # factor2 = FactorModel("library", ['Pandas', 'Polars'])
-        factor3 = FactorModel("dataframe_size", ['Big'])
+        factor3 = FactorModel("dataframe_size", ['Big', 'Small'])
         self.run_table_model = RunTableModel(
             factors=[factor3],
             # exclude_variations=[
