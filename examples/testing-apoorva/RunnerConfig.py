@@ -111,11 +111,11 @@ class RunnerConfig:
         self.energy_profiler = subprocess.Popen(shlex.split(energy_profiler_cmd))
 
         # check for etimes - doesn't make sense to take mean of it since its not the right value of 
-        performance_profiler_cmd = f"ps -l -p {self.target.pid} --noheader -o '%cpu,%mem,etimes'"
-        timer_cmd = f"while true; do {performance_profiler_cmd}; sleep 1; done"
-        self.performance_profiler = subprocess.Popen(['sh', '-c', timer_cmd],
-                                                     stdout=subprocess.PIPE, stderr=subprocess.PIPE
-                                                     )
+        # performance_profiler_cmd = f"ps -l -p {self.target.pid} --noheader -o '%cpu,%mem,etimes'"
+        # timer_cmd = f"while true; do {performance_profiler_cmd}; sleep 1; done"
+        # self.performance_profiler = subprocess.Popen(['sh', '-c', timer_cmd],
+        #                                              stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        #                                              )
 
         output.console_log("Config.start_measurement() called!")
 
@@ -128,8 +128,8 @@ class RunnerConfig:
         """Perform any activity here required for stopping measurements."""
         os.kill(self.energy_profiler.pid, signal.SIGINT)  # graceful shutdown of powerjoular
         self.energy_profiler.wait()
-        self.performance_profiler.kill()
-        self.performance_profiler.wait()
+        # self.performance_profiler.kill()
+        # self.performance_profiler.wait()
         output.console_log("Config.stop_measurement called!")
 
     def stop_run(self, context: RunnerContext) -> None:
@@ -148,21 +148,21 @@ class RunnerConfig:
         # powerjoular.csv - Power consumption of the whole system
         # powerjoular.csv-PID.csv - Power consumption of that specific process
         df = pd.read_csv(context.run_dir / f"powerjoular.csv-{self.target.pid}.csv")
-        psdf = pd.DataFrame(columns=['cpu_usage', 'memory_usage', 'elapsed_time'])
-        for i, l in enumerate(self.performance_profiler.stdout.readlines()):
-            decoded_line = l.decode('ascii').strip()
-            decoded_arr = decoded_line.split()
-            cpu_usage = float(decoded_arr[0])
-            mem_usage = float(decoded_arr[1])
-            elapsed_time = float(decoded_arr[2])
-            psdf.loc[i] = [cpu_usage, mem_usage, elapsed_time]
-        psdf.to_csv(context.run_dir / 'raw_data.csv', index=False)
+        # psdf = pd.DataFrame(columns=['cpu_usage', 'memory_usage', 'elapsed_time'])
+        # for i, l in enumerate(self.performance_profiler.stdout.readlines()):
+        #     decoded_line = l.decode('ascii').strip()
+        #     decoded_arr = decoded_line.split()
+        #     cpu_usage = float(decoded_arr[0])
+        #     mem_usage = float(decoded_arr[1])
+        #     elapsed_time = float(decoded_arr[2])
+        #     psdf.loc[i] = [cpu_usage, mem_usage, elapsed_time]
+        # psdf.to_csv(context.run_dir / 'raw_data.csv', index=False)
 
         run_data = {
-            'ps_avg_cpu': round(psdf['cpu_usage'].mean(), 3),
-            'ps_avg_mem': round(psdf['memory_usage'].mean(), 3),
-            'avg_elapsed_time': round(psdf['elapsed_time'].mean(), 3),
-            #'joular_avg_cpu': round(df['CPU Utilization'].sum(), 3),
+            # 'ps_avg_cpu': round(psdf['cpu_usage'].mean(), 3),
+            # 'ps_avg_mem': round(psdf['memory_usage'].mean(), 3),
+            # 'avg_elapsed_time': round(psdf['elapsed_time'].mean(), 3),
+            'joular_avg_cpu': round(df['CPU Utilization'].sum(), 3),
             'total_energy': round(df['CPU Power'].sum(), 3),
         }
         return run_data
