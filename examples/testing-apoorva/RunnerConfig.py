@@ -121,7 +121,7 @@ class RunnerConfig:
 
     def interact(self, context: RunnerContext) -> None:
         """Perform any interaction with the running target system here, or block here until the target finishes."""
-        # self.target.wait()
+        self.target.wait()
         output.console_log("Config.interact() called!")
 
     def stop_measurement(self, context: RunnerContext) -> None:
@@ -162,6 +162,7 @@ class RunnerConfig:
             'ps_avg_cpu': round(psdf['cpu_usage'].mean(), 3),
             'ps_avg_mem': round(psdf['memory_usage'].mean(), 3),
             'avg_elapsed_time': round(psdf['elapsed_time'].mean(), 3),
+            #'joular_avg_cpu': round(df['CPU Utilization'].sum(), 3),
             'total_energy': round(df['CPU Power'].sum(), 3),
         }
         return run_data

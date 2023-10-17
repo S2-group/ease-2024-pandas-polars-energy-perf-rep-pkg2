@@ -1,7 +1,7 @@
 import pandas as pd
 
 i=0
-while(i!=100):
+while(i<100):
     # Create a sample DataFrame
     df = pd.read_csv('DAT/Data/big_dataset.csv')
 
