@@ -94,7 +94,7 @@ class RunnerConfig:
     def start_measurement(self, context: RunnerContext) -> None:
         """Perform any activity required for starting measurements."""
 
-        profiler_cmd = f'powerjoular -p {self.target.pid} -f {context.run_dir / "powerjoular.csv"}'
+        profiler_cmd = f'powerjoular -l -p {self.target.pid} -f {context.run_dir / "powerjoular.csv"}'
 
         time.sleep(1) # allow the process to run a little before measuring
         self.profiler = subprocess.Popen(shlex.split(profiler_cmd))
