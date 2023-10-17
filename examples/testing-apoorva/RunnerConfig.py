@@ -96,7 +96,7 @@ class RunnerConfig:
         ### mapper to call the particular python file by name based on the factors 
         # start the target
         ### mention path cwd = self.ROOT_DIR
-        self.target = subprocess.Popen(['python3', 'DAT/Code/DAT/Pandas/Big_Dataset_Size/ViewData.py'],
+        self.target = subprocess.Popen(['python3', 'DAT/Code/DAT/Pandas/Big_Dataset_Size/RowColumnDAT.py'],
                                         stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=self.ROOT_DIR,
                                        )
         print("hellooooooo I am here", self.target.pid)
@@ -121,8 +121,7 @@ class RunnerConfig:
 
     def interact(self, context: RunnerContext) -> None:
         """Perform any interaction with the running target system here, or block here until the target finishes."""
-        # self.target.wait()
-        time.sleep(40)
+        self.target.wait()
         output.console_log("Config.interact() called!")
 
     def stop_measurement(self, context: RunnerContext) -> None:

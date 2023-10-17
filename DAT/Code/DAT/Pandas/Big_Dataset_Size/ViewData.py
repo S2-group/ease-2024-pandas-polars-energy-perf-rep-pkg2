@@ -1,23 +1,21 @@
 import pandas as pd
 
-i=0
-while(i<100):
-    # Create a sample DataFrame
-    df = pd.read_csv('DAT/Data/big_dataset.csv')
 
-    # Display the DataFrame
-    print("Pandas: Display DataFrame using head()")
-    print(df.head())
+# Create a sample DataFrame
+df = pd.read_csv('DAT/Data/big_dataset.csv')
 
-    print("\nPandas: Display DataFrame using tail()")
-    print(df.tail())
+# Display the DataFrame
+print("Pandas: Display DataFrame using head()")
+print(df.head())
 
-    print("\nPandas: Display DataFrame dtypes")
-    print(df.dtypes)
+print("\nPandas: Display DataFrame using tail()")
+print(df.tail())
 
-    print("\nPandas: Display DataFrame describe()")
-    print(df.describe())
+print("\nPandas: Display DataFrame dtypes")
+print(df.dtypes)
 
-    print("\nPandas: Display DataFrame shape")
-    print(df.shape)
-    i = i+1
+print("\nPandas: Display DataFrame describe()")
+print(df.describe())
+
+print("\nPandas: Display DataFrame shape")
+print(df.shape)
