@@ -105,9 +105,9 @@ class RunnerConfig:
 
     def start_measurement(self, context: RunnerContext) -> None:
         """Perform any activity required for starting measurements."""
-        energy_profiler_cmd = f'powerjoular -l -p {self.target.pid} -f {context.run_dir / "powerjoular.csv"}'
+        energy_profiler_cmd = f'powerjoular -p {self.target.pid} -f {context.run_dir / "powerjoular.csv"}'
         # do we need to make it sleep before measurign as well?
-        time.sleep(1) # allow the process to run a little before measuring
+        # time.sleep(1) # allow the process to run a little before measuring
         self.energy_profiler = subprocess.Popen(shlex.split(energy_profiler_cmd))
 
         # check for etimes - doesn't make sense to take mean of it since its not the right value of 
@@ -121,7 +121,7 @@ class RunnerConfig:
 
     def interact(self, context: RunnerContext) -> None:
         """Perform any interaction with the running target system here, or block here until the target finishes."""
-        self.target.wait()
+        time.sleep(20)
         output.console_log("Config.interact() called!")
 
     def stop_measurement(self, context: RunnerContext) -> None:
