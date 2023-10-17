@@ -63,7 +63,7 @@ class RunnerConfig:
         representing each run performed"""
         # factor1 = FactorModel("run_number", ['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7', 'r8', 'r9', 'r10'])
         # factor2 = FactorModel("library", ['Pandas', 'Polars'])
-        factor3 = FactorModel("dataframe_size", ['Big', 'Small'])
+        factor3 = FactorModel("dataframe_size", ['Big'])
         self.run_table_model = RunTableModel(
             factors=[factor3],
             # exclude_variations=[
@@ -105,7 +105,7 @@ class RunnerConfig:
 
     def start_measurement(self, context: RunnerContext) -> None:
         """Perform any activity required for starting measurements."""
-        energy_profiler_cmd = f'powerjoular -l -p {self.target.pid} -f {context.run_dir / "powerjoular.csv"}'
+        energy_profiler_cmd = f'powerjoular -tp {self.target.pid} -f {context.run_dir / "powerjoular.csv"}'
         # do we need to make it sleep before measurign as well?
         time.sleep(1) # allow the process to run a little before measuring
         self.energy_profiler = subprocess.Popen(shlex.split(energy_profiler_cmd))
