@@ -58,7 +58,7 @@ class RunnerConfig:
     def create_run_table_model(self) -> RunTableModel:
         """Create and return the run_table model here. A run_table is a List (rows) of tuples (columns),
         representing each run performed"""
-        cpu_limit_factor = FactorModel("cpu_limit", [25, 50, 100])
+        cpu_limit_factor = FactorModel("cpu_limit", [1, 2, 3])
         self.run_table_model = RunTableModel(
             factors = [cpu_limit_factor],
             data_columns=['avg_cpu', 'total_energy']
@@ -105,7 +105,7 @@ class RunnerConfig:
         # No interaction. We just run it for XX seconds.
         # Another example would be to wait for the target to finish, e.g. via `self.target.wait()`
         output.console_log("Running program for 20 seconds")
-        time.sleep(60)
+        self.target.wait()
 
     def stop_measurement(self, context: RunnerContext) -> None:
         """Perform any activity here required for stopping measurements."""
