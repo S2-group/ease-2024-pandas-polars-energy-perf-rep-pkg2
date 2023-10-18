@@ -37,8 +37,8 @@ def concat_dataframes(df1, df2):
 if __name__ == '__main__':
     i=0
     while(i<100):
-        df = pd.read_csv('DAT/Data/big_dataset.csv')
-        df_samp = pd.read_csv('DAT/Data/big_dataset.csv')
+        df = pd.read_csv('./big_dataset.csv')
+        df_samp = pd.read_csv('./big_dataset.csv')
         drop(df, cnameArray=['Professional', 'Unemployment'])
         groupby(df, cname='State')
         SAMPLE_SIZE = 20000
