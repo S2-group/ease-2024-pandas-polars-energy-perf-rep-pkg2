@@ -124,7 +124,7 @@ class RunnerConfig:
                 file_name = "Polars_Small_Execution.py"
 
         print("the lib is:", library)
-        subprocess.run(['python', f'./Code/DAT/{library}/{folder}/{file_name}'])
+        subprocess.run(['python3', f'./Code/DAT/{library}/{folder}/{file_name}'])
 
 
         
@@ -140,6 +140,7 @@ class RunnerConfig:
         output.console_log("Config.start_run() called!")
 
     def start_measurement(self, context: RunnerContext) -> None:
+        print("test")
         """Perform any activity required for starting measurements."""
         energy_profiler_cmd = f'powerjoular -l -p {self.target.pid} -f {context.run_dir / "powerjoular.csv"}'
         # do we need to make it sleep before measurign as well?
