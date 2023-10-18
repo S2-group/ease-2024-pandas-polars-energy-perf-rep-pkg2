@@ -34,13 +34,16 @@ def concat_dataframes(df1, df2):
 
 
 # # Row Column Operations
-
-df = pd.read_csv('../../../../Data/big_dataset.csv')
-df_samp = pd.read_csv('../../../../Data/big_dataset.csv')
-drop(df, cnameArray=['Professional', 'Unemployment'])
-groupby(df, cname='State')
-SAMPLE_SIZE = 20000
-df_samp = df.sample(SAMPLE_SIZE)
-concat_dataframes(df, df_samp)
-sort(df, 'VotingAgeCitizen')
-merge(df, df_samp)
+if __name__ == '__main__':
+    i=0
+    while(i<400):
+        df = pd.read_csv('DAT/Data/big_dataset.csv')
+        df_samp = pd.read_csv('DAT/Data/big_dataset.csv')
+        drop(df, cnameArray=['Professional', 'Unemployment'])
+        groupby(df, cname='State')
+        SAMPLE_SIZE = 20000
+        df_samp = df.sample(SAMPLE_SIZE)
+        concat_dataframes(df, df_samp)
+        sort(df, 'VotingAgeCitizen')
+        merge(df, df_samp)
+        i = i+1

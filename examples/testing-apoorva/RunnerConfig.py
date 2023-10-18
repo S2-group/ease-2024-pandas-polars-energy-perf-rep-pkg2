@@ -17,7 +17,7 @@ import time
 import shlex
 import os
 import pandas as pd
-import random
+
 
 class RunnerConfig:
     ROOT_DIR = Path(dirname(realpath(__file__)))
@@ -37,20 +37,6 @@ class RunnerConfig:
     """The time Experiment Runner will wait after a run completes.
     This can be essential to accommodate for cooldown periods on some systems."""
     time_between_runs_in_ms: int = 1000
-
-    file_names = [
-    'FileTypes.py',
-    'InputOutputDAT.py',
-    'MissingDataDAT.py',
-    'RowColumnDAT.py',
-    'StatisticalAggregationMinMaxUnique.py',
-    'StatisticalAggregationSumMeanDAT.py',
-    'TimeSeriesDAT.py',
-    'ViewData.py'
-    ]
-    num_runs = 10
-    pandas_execution_counts = {file_name: 0 for file_name in file_names}
-    polars_execution_counts = {file_name: 0 for file_name in file_names}
 
     # Dynamic configurations can be one-time satisfied here before the program takes the config as-is
     # e.g. Setting some variable based on some criteria
@@ -104,72 +90,46 @@ class RunnerConfig:
         """Perform any activity required for starting the run here.
         For example, starting the target system to measure.
         Activities after starting the run should also be performed here."""
+        # library = context.run_variation['library']
+        # dataframe_size = context.run_variation['dataframe_size']
 
-        ### Mehdi & Pouyeh attempt
-        library = context.run_variation['library']
-        dataframe_size = context.run_variation['dataframe_size']
-        if(dataframe_size == "Big"):
-            folder = "Big_Dataset_Size"
-        else:
-            folder = "Small_Dataset_Size"
-        # todo: determine script to be executed randomly !
-        random.shuffle(self.file_names)
-        if(library == "Pandas"):
-            cur_lib =  self.pandas_execution_counts
-        else:
-            cur_lib = self.polars_execution_counts
-        while any(count < self.num_runs for count in cur_lib.values()):
-            # Randomly select a file
-            file_name = random.choice(self.file_names)
-
-            # Check if the file can be executed again
-            if self.cur_lib[file_name] < self.num_runs:
-                # Execute the file
-                subprocess.run(['python', f'DAT/Code/DAT/{library}/{folder}/{file_name}'])
-
-                # Increment the execution count
-                self.execution_counts[file_name] += 1
-
-
-        
-        
         ### mapper to call the particular python file by name based on the factors 
         # start the target
         ### mention path cwd = self.ROOT_DIR
-        #self.target = subprocess.Popen(['python', 'DAT/Code/DAT/Pandas/Big_Dataset_Size/ViewData.py']
-                                    #    stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=self.ROOT_DIR,
-                                       #)
+        self.target = subprocess.Popen(['python3', 'DAT/Code/DAT/Pandas/Big_Dataset_Size/RowColumnDAT.py'],
+                                        stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=self.ROOT_DIR,
+                                       )
         print("hellooooooo I am here", self.target.pid)
 
         output.console_log("Config.start_run() called!")
 
     def start_measurement(self, context: RunnerContext) -> None:
         """Perform any activity required for starting measurements."""
-        energy_profiler_cmd = f'powerjoular -l -p {self.target.pid} -f {context.run_dir / "powerjoular.csv"}'
+        energy_profiler_cmd = f'powerjoular -p {self.target.pid} -f {context.run_dir / "powerjoular.csv"}'
         # do we need to make it sleep before measurign as well?
-        time.sleep(1) # allow the process to run a little before measuring
+        # time.sleep(1) # allow the process to run a little before measuring
         self.energy_profiler = subprocess.Popen(shlex.split(energy_profiler_cmd))
 
         # check for etimes - doesn't make sense to take mean of it since its not the right value of 
-        performance_profiler_cmd = f"ps -p {self.target_pid} --noheader -o '%cpu %mem etimes'"
-        timer_cmd = f"while true; do {performance_profiler_cmd}; sleep 1; done"
-        self.performance_profiler = subprocess.Popen(['sh', '-c', timer_cmd],
-                                                     stdout=subprocess.PIPE, stderr=subprocess.PIPE
-                                                     )
+        # performance_profiler_cmd = f"ps -l -p {self.target.pid} --noheader -o '%cpu,%mem,etimes'"
+        # timer_cmd = f"while true; do {performance_profiler_cmd}; sleep 1; done"
+        # self.performance_profiler = subprocess.Popen(['sh', '-c', timer_cmd],
+        #                                              stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        #                                              )
 
         output.console_log("Config.start_measurement() called!")
 
     def interact(self, context: RunnerContext) -> None:
         """Perform any interaction with the running target system here, or block here until the target finishes."""
-        self.target.wait()
+        time.sleep(20)
         output.console_log("Config.interact() called!")
 
     def stop_measurement(self, context: RunnerContext) -> None:
         """Perform any activity here required for stopping measurements."""
         os.kill(self.energy_profiler.pid, signal.SIGINT)  # graceful shutdown of powerjoular
         self.energy_profiler.wait()
-        self.performance_profiler.kill()
-        self.performance_profiler.wait()
+        # self.performance_profiler.kill()
+        # self.performance_profiler.wait()
         output.console_log("Config.stop_measurement called!")
 
     def stop_run(self, context: RunnerContext) -> None:
@@ -188,20 +148,20 @@ class RunnerConfig:
         # powerjoular.csv - Power consumption of the whole system
         # powerjoular.csv-PID.csv - Power consumption of that specific process
         df = pd.read_csv(context.run_dir / f"powerjoular.csv-{self.target.pid}.csv")
-        psdf = pd.DataFrame(columns=['cpu_usage', 'memory_usage', 'elapsed_time'])
-        for i, l in enumerate(self.performance_profiler.stdout.readlines()):
-            decoded_line = l.decode('ascii').strip()
-            decoded_arr = decoded_line.split()
-            cpu_usage = float(decoded_arr[0])
-            mem_usage = float(decoded_arr[1])
-            elapsed_time = float(decoded_arr[2])
-            psdf.loc[i] = [cpu_usage, mem_usage, elapsed_time]
-        psdf.to_csv(context.run_dir / 'raw_data.csv', index=False)
+        # psdf = pd.DataFrame(columns=['cpu_usage', 'memory_usage', 'elapsed_time'])
+        # for i, l in enumerate(self.performance_profiler.stdout.readlines()):
+        #     decoded_line = l.decode('ascii').strip()
+        #     decoded_arr = decoded_line.split()
+        #     cpu_usage = float(decoded_arr[0])
+        #     mem_usage = float(decoded_arr[1])
+        #     elapsed_time = float(decoded_arr[2])
+        #     psdf.loc[i] = [cpu_usage, mem_usage, elapsed_time]
+        # psdf.to_csv(context.run_dir / 'raw_data.csv', index=False)
 
         run_data = {
-            'ps_avg_cpu': round(psdf['cpu_usage'].mean(), 3),
-            'ps_avg_mem': round(psdf['memory_usage'].mean(), 3),
-            'avg_elapsed_time': round(psdf['elapsed_time'].mean(), 3),
+            # 'ps_avg_cpu': round(psdf['cpu_usage'].mean(), 3),
+            # 'ps_avg_mem': round(psdf['memory_usage'].mean(), 3),
+            # 'avg_elapsed_time': round(psdf['elapsed_time'].mean(), 3),
             'joular_avg_cpu': round(df['CPU Utilization'].sum(), 3),
             'total_energy': round(df['CPU Power'].sum(), 3),
         }

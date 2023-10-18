@@ -1,7 +1,8 @@
 import pandas as pd
 
+
 # Create a sample DataFrame
-df = pd.read_csv('../../../../Data/big_dataset.csv')
+df = pd.read_csv('DAT/Data/big_dataset.csv')
 
 # Display the DataFrame
 print("Pandas: Display DataFrame using head()")
