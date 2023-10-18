@@ -66,10 +66,7 @@ class RunnerConfig:
         factor3 = FactorModel("dataframe_size", ['Big', 'Small'])
         self.run_table_model = RunTableModel(
             factors=[factor3],
-            # exclude_variations=[
-            #     {factor1: ['example_treatment1']},                   # all runs having treatment "example_treatment1" will be excluded
-            #     {factor1: ['example_treatment2'], factor2: [True]},  # all runs having the combination ("example_treatment2", True) will be excluded
-            # ],
+            ## add randomised
             data_columns=['avg_cpu', 'avg_mem', 'avg_exec_time', 'avg_energy']
         )
         return self.run_table_model
@@ -83,7 +80,6 @@ class RunnerConfig:
     def before_run(self) -> None:
         """Perform any activity required before starting a run.
         No context is available here as the run is not yet active (BEFORE RUN)"""
-        ###### Need to kill all other unwanted processes 
         output.console_log("Config.before_run() called!")
 
     def start_run(self, context: RunnerContext) -> None:
@@ -121,7 +117,7 @@ class RunnerConfig:
 
     def interact(self, context: RunnerContext) -> None:
         """Perform any interaction with the running target system here, or block here until the target finishes."""
-        time.sleep(20)
+        time.sleep(60)
         output.console_log("Config.interact() called!")
 
     def stop_measurement(self, context: RunnerContext) -> None:
