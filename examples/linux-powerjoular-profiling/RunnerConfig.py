@@ -83,8 +83,7 @@ class RunnerConfig:
         cpu_limit = context.run_variation['cpu_limit']
 
         # start the target
-        self.target = subprocess.Popen(['python3', './primer.py'],
-            stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=self.ROOT_DIR,
+        self.target = subprocess.Popen(['python3', './RowColumnDAT.py'], cwd=self.ROOT_DIR,
         )
 
         # Configure the environment based on the current variation
@@ -94,7 +93,7 @@ class RunnerConfig:
     def start_measurement(self, context: RunnerContext) -> None:
         """Perform any activity required for starting measurements."""
 
-        profiler_cmd = f'powerjoular -l -p {self.target.pid} -f {context.run_dir / "powerjoular.csv"}'
+        profiler_cmd = f'powerjoular -p {self.target.pid} -f {context.run_dir / "powerjoular.csv"}'
 
         time.sleep(1) # allow the process to run a little before measuring
         self.profiler = subprocess.Popen(shlex.split(profiler_cmd))
@@ -105,7 +104,7 @@ class RunnerConfig:
         # No interaction. We just run it for XX seconds.
         # Another example would be to wait for the target to finish, e.g. via `self.target.wait()`
         output.console_log("Running program for 20 seconds")
-        time.sleep(20)
+        self.target.wait()
 
     def stop_measurement(self, context: RunnerContext) -> None:
         """Perform any activity here required for stopping measurements."""
