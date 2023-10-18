@@ -58,7 +58,7 @@ class RunnerConfig:
     def create_run_table_model(self) -> RunTableModel:
         """Create and return the run_table model here. A run_table is a List (rows) of tuples (columns),
         representing each run performed"""
-        cpu_limit_factor = FactorModel("cpu_limit", [1, 2, 3])
+        cpu_limit_factor = FactorModel("cpu_limit", [25, 50, 100])
         self.run_table_model = RunTableModel(
             factors = [cpu_limit_factor],
             data_columns=['avg_cpu', 'total_energy']

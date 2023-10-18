@@ -36,7 +36,7 @@ def concat_dataframes(df1, df2):
 # # Row Column Operations
 if __name__ == '__main__':
     i=0
-    while(i<100):
+    while(i<10):
         df = pd.read_csv('./big_dataset.csv')
         df_samp = pd.read_csv('./big_dataset.csv')
         drop(df, cnameArray=['Professional', 'Unemployment'])
