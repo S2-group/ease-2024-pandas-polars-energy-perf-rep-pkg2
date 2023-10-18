@@ -83,7 +83,7 @@ class RunnerConfig:
         cpu_limit = context.run_variation['cpu_limit']
 
         # start the target
-        self.target = subprocess.Popen(['python3', './primer.py'],
+        self.target = subprocess.Popen(['python3', 'DAT/Code/DAT/Pandas/Big_Dataset_Size/RowColumnDAT.py'],
             stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=self.ROOT_DIR,
         )
 
@@ -105,7 +105,7 @@ class RunnerConfig:
         # No interaction. We just run it for XX seconds.
         # Another example would be to wait for the target to finish, e.g. via `self.target.wait()`
         output.console_log("Running program for 20 seconds")
-        time.sleep(20)
+        time.sleep(60)
 
     def stop_measurement(self, context: RunnerContext) -> None:
         """Perform any activity here required for stopping measurements."""
