@@ -79,7 +79,7 @@ class RunnerConfig:
         factor2 = FactorModel("library", ['Pandas', 'Polars'])
         factor3 = FactorModel("dataframe_size", ['Big', 'Small'])
         self.run_table_model = RunTableModel(
-            factors=[factor3],
+            factors=[factor1, factor2, factor3],
             # exclude_variations=[
             #     {factor1: ['example_treatment1']},                   # all runs having treatment "example_treatment1" will be excluded
             #     {factor1: ['example_treatment2'], factor2: [True]},  # all runs having the combination ("example_treatment2", True) will be excluded
