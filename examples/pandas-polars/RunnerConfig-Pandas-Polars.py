@@ -108,14 +108,23 @@ class RunnerConfig:
         ### Mehdi & Pouyeh attempt
         library = context.run_variation['library']
         dataframe_size = context.run_variation['dataframe_size']
-        if(dataframe_size == "Big"):
-            folder = "Big_Dataset_Size"
-            file_name = "Pandas_Big_Execution.py"
-        else:
-            folder = "Small_Dataset_Size"
-            file_name = "Pandas_Small_Execution.py"
+        if (library == "Pandas"):
+            if(dataframe_size == "Big"):
+                folder = "Big_Dataset_Size"
+                file_name = "Pandas_Big_Execution.py"
+            else:
+                folder = "Small_Dataset_Size"
+                file_name = "Pandas_Small_Execution.py"
+        elif(library=="Polars"):
+            if(dataframe_size == "Big"):
+                folder = "Big_Dataset_Size"
+                file_name = "Polars_Big_Execution.py"
+            else:
+                folder = "Small_Dataset_Size"
+                file_name = "Polars_Small_Execution.py"
+
         print("the lib is:", library)
-        subprocess.run(['python', f'/Code/DAT/{library}/{folder}/{file_name}'])
+        subprocess.run(['python', f'./Code/DAT/{library}/{folder}/{file_name}'])
 
 
         
