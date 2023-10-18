@@ -83,8 +83,7 @@ class RunnerConfig:
         cpu_limit = context.run_variation['cpu_limit']
 
         # start the target
-        self.target = subprocess.Popen(['python3', './RowColumnDAT.py']
-            # stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=self.ROOT_DIR,
+        self.target = subprocess.Popen(['python3', './RowColumnDAT.py'], cwd=self.ROOT_DIR,
         )
 
         # Configure the environment based on the current variation
