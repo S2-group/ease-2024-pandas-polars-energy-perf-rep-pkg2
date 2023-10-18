@@ -110,25 +110,12 @@ class RunnerConfig:
         dataframe_size = context.run_variation['dataframe_size']
         if(dataframe_size == "Big"):
             folder = "Big_Dataset_Size"
+            file_name = "Pandas_Big_Execution.py"
         else:
             folder = "Small_Dataset_Size"
-        # todo: determine script to be executed randomly !
-        random.shuffle(self.file_names)
-        if(library == "Pandas"):
-            cur_lib =  self.pandas_execution_counts
-        else:
-            cur_lib = self.polars_execution_counts
-        while any(count < self.num_runs for count in cur_lib.values()):
-            # Randomly select a file
-            file_name = random.choice(self.file_names)
-
-            # Check if the file can be executed again
-            if self.cur_lib[file_name] < self.num_runs:
-                # Execute the file
-                subprocess.run(['python', f'DAT/Code/DAT/{library}/{folder}/{file_name}'])
-
-                # Increment the execution count
-                self.execution_counts[file_name] += 1
+            file_name = "Pandas_Small_Execution.py"
+        print("the lib is:", library)
+        subprocess.run(['python', f'/Code/DAT/{library}/{folder}/{file_name}'])
 
 
         

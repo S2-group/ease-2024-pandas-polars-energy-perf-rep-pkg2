@@ -24,5 +24,7 @@ def execute_files(n_times):
         StatisticalAggregationSumMeanDAT()
         ViewData()
 
+execute_files(10)
+
 
         
