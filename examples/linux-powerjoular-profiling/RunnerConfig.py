@@ -105,7 +105,7 @@ class RunnerConfig:
         # No interaction. We just run it for XX seconds.
         # Another example would be to wait for the target to finish, e.g. via `self.target.wait()`
         output.console_log("Running program for 20 seconds")
-        self.target.wait()
+        time.sleep(120)
 
     def stop_measurement(self, context: RunnerContext) -> None:
         """Perform any activity here required for stopping measurements."""
