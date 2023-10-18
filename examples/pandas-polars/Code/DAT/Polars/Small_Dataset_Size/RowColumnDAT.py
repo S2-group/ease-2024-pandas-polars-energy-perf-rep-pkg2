@@ -1,5 +1,7 @@
 import polars as pl
 
+small_ds_size = 1000
+
 
 def drop(df, cnameArray):
     return df.drop(columns=cnameArray)
@@ -23,11 +25,12 @@ def sort(df, cname):
 def concat_dataframes(df1, df2):
     return pl.concat([df1, df2])
 
+
 def RowColumnDAT():
     # # Row Column Operations
 
-    df = pl.read_csv('Data/big_dataset.csv')
-    df_samp = pl.read_csv('Data/big_dataset.csv')
+    df = pl.read_csv('Data/big_dataset.csv',n_rows=small_ds_size)
+    df_samp = pl.read_csv('Data/big_dataset.csv',n_rows=small_ds_size)
 
     # print(drop(df, cnameArray=['Professional', 'Unemployment']))
     # groupby(df, cname='State')

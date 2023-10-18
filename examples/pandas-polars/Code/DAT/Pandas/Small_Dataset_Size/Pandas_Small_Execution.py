@@ -5,16 +5,6 @@ from StatisticalAggregationMinMaxUnique import StatisticalAggregationMinMaxUniqu
 from StatisticalAggregationSumMeanDAT import StatisticalAggregationSumMeanDAT
 from ViewData import ViewData
 
-file_names = [
-    'FileTypes.py',
-    'InputOutputDAT.py',
-    'MissingDataDAT.py',
-    'StatisticalAggregationMinMaxUnique.py',
-    'StatisticalAggregationSumMeanDAT.py',
-    'TimeSeriesDAT.py',
-    'ViewData.py'
-    ]
-
 def execute_files(n_times):
     for i in n_times:
         FileTypes()
@@ -24,5 +14,5 @@ def execute_files(n_times):
         StatisticalAggregationSumMeanDAT()
         ViewData()
 
-
+execute_files(10)
         

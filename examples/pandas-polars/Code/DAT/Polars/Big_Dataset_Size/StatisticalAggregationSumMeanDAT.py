@@ -1,7 +1,6 @@
 import polars as pl
 
-# Load the CSV data into a Polars DataFrame
-df = pl.read_csv('Data/big_dataset.csv')
+
 
 # Define a function to count missing values
 def count(df: pl.DataFrame):
@@ -16,13 +15,14 @@ def sum(df: pl.DataFrame):
 def mean(df: pl.DataFrame):
     return df.mean()
 
+def StatisticalAggregationSumMeanDAT():
+    # Load the CSV data into a Polars DataFrame
+    df = pl.read_csv('Data/big_dataset.csv')
+    # Perform statistical operations
+    dfCount = count(df)
+    summedIncome = sum(df['Income'])
+    MeanIncome = mean(df['Income'])
 
 
-# Perform statistical operations
-dfCount = count(df)
-summedIncome = sum(df['Income'])
-MeanIncome = mean(df['Income'])
-
-
-# Print the results
-print(f"{dfCount}\nsummedIncome: {summedIncome},\n MeanIncome: {MeanIncome}")
+    # Print the results
+    print(f"{dfCount}\nsummedIncome: {summedIncome},\n MeanIncome: {MeanIncome}")
