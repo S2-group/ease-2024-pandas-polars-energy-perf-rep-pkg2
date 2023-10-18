@@ -124,7 +124,7 @@ class RunnerConfig:
                 file_name = "Polars_Small_Execution.py"
 
         print("the lib is:", library)
-        subprocess.run(['python3', f'./Code/DAT/{library}/{folder}/{file_name}'])
+        subprocess.run(['python3', f'Code/DAT/{library}/{folder}/{file_name}'])
 
 
         
