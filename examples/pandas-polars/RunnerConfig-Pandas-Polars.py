@@ -126,7 +126,8 @@ class RunnerConfig:
                 file_name = "Polars_Small_Execution.py"
 
 
-        self.target = subprocess.Popen(['python3', f'examples/pandas-polars/Code/DAT/{library}/{folder}/{file_name}'])
+        self.target = subprocess.Popen(['python3', f'examples/pandas-polars/Code/DAT/{library}/{folder}/{file_name}'],
+                                       cwd=self.ROOT_DIR)
 
 
         print("hellooooooo I am here", self.target.pid)
