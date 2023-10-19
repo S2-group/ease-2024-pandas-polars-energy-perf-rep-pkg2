@@ -126,8 +126,10 @@ class RunnerConfig:
                 folder = "Small_Dataset_Size"
                 file_name = "Polars_Small_Execution.py"
 
-        self.target = subprocess.Popen(['python3', f'examples/pandas-polars/Code/DAT/{library}/{folder}/{file_name}'],
-                                       cwd=self.ROOT_DIR)
+
+        #print("the lib is:", library)
+        subprocess.run(['python3', f'examples/pandas-polars/Code/DAT/{library}/{folder}/{file_name}'])
+        #subprocess.run(['python3', f'examples/pandas-polars/Code/DAT/Polars/Big_Dataset_Size/Polars_Big_Execution.py'])
 
 
         print("hellooooooo I am here", self.target.pid)
