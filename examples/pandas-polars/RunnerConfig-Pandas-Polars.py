@@ -83,7 +83,7 @@ class RunnerConfig:
         factor3 = FactorModel("dataframe_size", ['Big', 'Small'])
         self.run_table_model = RunTableModel(
             factors=[factor1, factor2, factor3],
-            data_columns=['avg_cpu', 'avg_mem', 'avg_exec_time', 'avg_energy'],
+            data_columns=['execution_time', 'cpu_usage', 'memory_usage', 'energy_usage'],
             shuffle=True
         )
         return self.run_table_model
