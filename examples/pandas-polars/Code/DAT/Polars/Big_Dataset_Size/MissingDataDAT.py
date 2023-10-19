@@ -8,7 +8,7 @@ import polars as pl
 def MissingDataDAT():
     ############## COUNT MISSING VALUES AND REMOVE THEM ###############
 
-    df = pl.read_csv('Data/big_dataset.csv')
+    df = pl.read_csv('../../../../Data/big_dataset.csv')
     df_drop = df.clone()
     df_fill = df.clone()
 

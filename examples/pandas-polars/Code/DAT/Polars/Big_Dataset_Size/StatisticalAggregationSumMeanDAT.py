@@ -17,7 +17,7 @@ def mean(df: pl.DataFrame):
 
 def StatisticalAggregationSumMeanDAT():
     # Load the CSV data into a Polars DataFrame
-    df = pl.read_csv('Data/big_dataset.csv')
+    df = pl.read_csv('../../../../Data/big_dataset.csv')
     # Perform statistical operations
     dfCount = count(df)
     summedIncome = sum(df['Income'])
