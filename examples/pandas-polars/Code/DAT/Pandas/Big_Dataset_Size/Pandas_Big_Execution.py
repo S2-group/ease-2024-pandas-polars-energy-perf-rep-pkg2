@@ -11,11 +11,13 @@ import os, shutil
 def execute_files(n_times):
     current_directory = os.getcwd()
     print("Current Working Directory:", current_directory)
-    folder = './examples/pandas-polars/Code/DAT/Pandas/Big_Dataset_Size/OUTPUT_FILES'
+    output_files = './examples/pandas-polars/Code/DAT/Pandas/Big_Dataset_Size/OUTPUT_FILES'
+    data_files = './examples/pandas-polars/Data/big_dataset.csv'
+
 
     for i in range(n_times):
-        for filename in os.listdir(folder):
-            file_path = os.path.join(folder, filename)
+        for filename in os.listdir(output_files):
+            file_path = os.path.join(output_files, filename)
             try:
                 if os.path.isfile(file_path) or os.path.islink(file_path):
                     os.unlink(file_path)
@@ -23,7 +25,7 @@ def execute_files(n_times):
                     shutil.rmtree(file_path)
             except Exception as e:
                 print('Failed to delete %s. Reason: %s' % (file_path, e))
-        FileTypes()
+        FileTypes(output_files,data_files)
         # MissingDataDAT()
         # StatisticalAggregationMinMaxUnique()
         # StatisticalAggregationSumMeanDAT()

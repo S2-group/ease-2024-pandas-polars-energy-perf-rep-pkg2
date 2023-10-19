@@ -2,11 +2,10 @@
 import os, shutil
 import pandas as pd
 
-def FileTypes():
-    folder = './examples/pandas-polars/Code/DAT/Pandas/Big_Dataset_Size/OUTPUT_FILES'
+def FileTypes(folder, data_file):
 
     # Load the CSV file into a Pandas DataFrame
-    df = pd.read_csv('./examples/pandas-polars/Data/big_dataset.csv')
+    df = pd.read_csv(data_file)
 
     # Convert the DataFrame to JSON format
     df.to_json(f"{folder}/Pandas_Big.json")  # Converts each row to a JSON object
