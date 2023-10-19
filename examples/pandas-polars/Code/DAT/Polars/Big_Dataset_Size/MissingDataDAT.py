@@ -5,10 +5,10 @@
 import polars as pl
 #import pandas as pd
 
-def MissingDataDAT():
+def MissingDataDAT(output_files, data_file):
     ############## COUNT MISSING VALUES AND REMOVE THEM ###############
 
-    df = pl.read_csv('../../../../Data/big_dataset.csv')
+    df = pl.read_csv(data_file)
     df_drop = df.clone()
     df_fill = df.clone()
 
