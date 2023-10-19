@@ -25,7 +25,7 @@ def execute_files(n_times):
     #                 shutil.rmtree(file_path)
     #         except Exception as e:
     #             print('Failed to delete %s. Reason: %s' % (file_path, e))
-    FileTypes(output_files,data_files)
+    FileTypes(output_files, data_files)
         # MissingDataDAT()
         # StatisticalAggregationMinMaxUnique()
         # StatisticalAggregationSumMeanDAT()
