@@ -98,10 +98,9 @@ class RunnerConfig:
         output.console_log("Config.before_experiment() called!")
 
     def before_run(self) -> None:
+        self.timestamp_start = datetime.now()
         """Perform any activity required before starting a run.
         No context is available here as the run is not yet active (BEFORE RUN)"""
-        self.timestamp_start = datetime.now()
-        output.console_log("Config.before_run() called!")
 
     def start_run(self, context: RunnerContext) -> None:
         """Perform any activity required for starting the run here.
@@ -127,9 +126,7 @@ class RunnerConfig:
                 file_name = "Polars_Small_Execution.py"
 
 
-        #print("the lib is:", library)
-        subprocess.run(['python3', f'examples/pandas-polars/Code/DAT/{library}/{folder}/{file_name}'])
-        #subprocess.run(['python3', f'examples/pandas-polars/Code/DAT/Polars/Big_Dataset_Size/Polars_Big_Execution.py'])
+        subprocess.Popen(['python3', f'examples/pandas-polars/Code/DAT/{library}/{folder}/{file_name}'])
 
 
         print("hellooooooo I am here", self.target.pid)
