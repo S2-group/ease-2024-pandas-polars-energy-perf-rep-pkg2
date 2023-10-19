@@ -1,8 +1,9 @@
+import os
 import pandas as pd
 
 small_ds_size = 1000
 
-def InputOutputDAT():
+def InputOutputDAT(output_files, data_file):
 
     # Read csv dataset
     def load_csv(path):
@@ -30,15 +31,19 @@ def InputOutputDAT():
     def save_parquet(df, path):
         return df.to_parquet(path)
 
-
-    folder = './OUTPUT_FILES'
+    PandasSmall_json = os.path.join(output_files, "Pandas_Big.json")
+    PandasSmall_parquet = os.path.join(output_files, "Pandas_Big.parquet")
     # # Read operations
-    df = load_json(path=f"{folder}/Pandas_Small.json")
+    df = load_json(PandasSmall_json)
 
-    df = load_csv(path='../../../../Data/big_dataset.csv')
+    df = load_csv(data_file)
 
-    df = load_parquet(path=f"{folder}/Pandas_Small.parquet")
+    df = load_parquet(PandasSmall_parquet)
 
-    save_csv(df, f'{folder}/df_adult_pandas_1.csv')
-    save_json(df, f'{folder}/df_adult_pandas_1.json')
-    save_parquet(df, f'{folder}/df_adult_pandas_1.parquet')
+    new_Csv = os.path.join(output_files, "df_adult_pandas_1.csv")
+    new_JSON = os.path.join(output_files, "df_adult_pandas_1.json")
+    new_parque = os.path.join(output_files, "df_adult_pandas_1.parquet")
+
+    save_csv(df, new_Csv)
+    save_json(df, new_JSON)
+    save_parquet(df, new_parque)

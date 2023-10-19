@@ -3,28 +3,20 @@ import os, shutil
 import pandas as pd
 
 
-def FileTypes():
+def FileTypes(output_files, data_file):
 
     small_ds_size = 1000
 
-    folder = './OUTPUT_FILES'
-    for filename in os.listdir(folder):
-        file_path = os.path.join(folder, filename)
-        try:
-            if os.path.isfile(file_path) or os.path.islink(file_path):
-                os.unlink(file_path)
-            elif os.path.isdir(file_path):
-                shutil.rmtree(file_path)
-        except Exception as e:
-            print('Failed to delete %s. Reason: %s' % (file_path, e))
-
 
     # Load the CSV file into a Pandas DataFrame
-    df = pd.read_csv('../../../../Data/big_dataset.csv',nrows=small_ds_size)
+    df = pd.read_csv(data_file,nrows=small_ds_size)
+
+    PandasSmall_json = os.path.join(output_files, "Pandas_Small.json")
+    PandasSmall_parquet = os.path.join(output_files, "Pandas_Small.parquet")
 
     # Convert the DataFrame to JSON format
-    df.to_json(f"{folder}/Pandas_Small.json")  # Converts each row to a JSON object
+    df.to_json(PandasSmall_json)  # Converts each row to a JSON object
 
     # Convert the DataFrame to parquet format
-    df.to_parquet(f"{folder}/Pandas_Small.parquet")
+    df.to_parquet(PandasSmall_parquet)
 

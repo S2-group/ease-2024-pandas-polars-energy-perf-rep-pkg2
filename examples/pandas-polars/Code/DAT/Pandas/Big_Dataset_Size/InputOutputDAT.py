@@ -28,8 +28,6 @@ def InputOutputDAT(output_files, data_file):
     def save_parquet(df, path):
         return df.to_parquet(path)
 
-
-    folder = './OUTPUT_FILES'
     # # Read operations
     PandasBig_json = os.path.join(output_files, "Pandas_Big.json")
     PandasBig_parquet = os.path.join(output_files, "Pandas_Big.parquet")
