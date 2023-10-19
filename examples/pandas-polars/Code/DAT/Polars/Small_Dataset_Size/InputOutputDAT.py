@@ -1,40 +1,47 @@
+import os
 import polars as pl
 
-small_ds_size = 1000
-# Read csv dataset
-def load_csv(path):
-    return pl.read_csv(path,n_rows=small_ds_size)
+def InputOutputDAT(output_files, data_file):
+    # Read csv dataset
+    small_ds_size = 1000
+
+    def load_csv(path):
+        return pl.read_csv(path, n_rows=small_ds_size)
 
 
-# Read parquet dataset
-def load_parquet(path):
-    return pl.read_parquet(path)
+    # Read parquet dataset
+    def load_parquet(path):
+        return pl.read_parquet(path)
 
 
-# Read json dataset
-def load_json(path):
-    return pl.read_json(path)
+    # Read json dataset
+    def load_json(path):
+        return pl.read_json(path)
 
 
-def save_csv(df, path):
-    return df.write_csv(path)
+    def save_csv(df, path):
+        return df.write_csv(path)
 
 
-def save_json(df, path):
-    return df.write_json(path)
+    def save_json(df, path):
+        return df.write_json(path)
 
 
-def save_parquet(df, path):
-    return df.write_parquet(path)
+    def save_parquet(df, path):
+        return df.write_parquet(path)
 
-def InputOutputDAT():
-    folder = './OUTPUT_FILES'
+    PolarsSmall_json = os.path.join(output_files, "Polars_Small.json")
+    PolarsSmall_parquet = os.path.join(output_files, "Polars_Small.parquet")
+
     # # Read operations
-    df = load_json(path=f"{folder}/Polars_Big.json")
+    df = load_csv(data_file)
+    df = load_json(PolarsSmall_json)
+    df = load_parquet(PolarsSmall_parquet)
 
-    df = load_csv(path='../../../../Data/big_dataset.csv')
-    df = load_parquet(path=f"{folder}/Polars_Big.parquet")
+    new_Csv = os.path.join(output_files, "df_adult_polars_1.csv")
+    new_JSON = os.path.join(output_files, "df_adult_polars_1.json")
+    new_parque = os.path.join(output_files, "df_adult_polars_1.parquet")
 
-    save_csv(df, f'{folder}/df_adult_pandas_1.csv')
-    save_json(df, f'{folder}/df_adult_pandas_1.json')
-    save_parquet(df, f'{folder}/df_adult_pandas_1.parquet')
+    save_csv(df, new_Csv)
+    save_json(df, new_JSON)
+    save_parquet(df, new_parque)

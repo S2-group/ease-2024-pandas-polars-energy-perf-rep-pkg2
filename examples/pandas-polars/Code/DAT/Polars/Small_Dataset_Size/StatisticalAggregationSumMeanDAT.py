@@ -1,9 +1,9 @@
 import polars as pl
 
-def StatisticalAggregationSumMeanDAT():
+def StatisticalAggregationSumMeanDAT(output_files, data_file):
     small_ds_size = 1000
     # Load the CSV data into a Polars DataFrame
-    df = pl.read_csv('../../../../Data/big_dataset.csv', n_rows=small_ds_size)
+    df = pl.read_csv(data_file, n_rows=small_ds_size)
 
     # Define a function to count missing values
     def count(df: pl.DataFrame):

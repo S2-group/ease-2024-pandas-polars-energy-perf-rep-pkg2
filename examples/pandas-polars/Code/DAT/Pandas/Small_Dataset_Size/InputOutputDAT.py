@@ -1,9 +1,9 @@
 import os
 import pandas as pd
 
-small_ds_size = 1000
 
 def InputOutputDAT(output_files, data_file):
+    small_ds_size = 1000
 
     # Read csv dataset
     def load_csv(path):
