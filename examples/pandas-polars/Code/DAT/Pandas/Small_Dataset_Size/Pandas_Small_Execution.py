@@ -6,7 +6,7 @@ from StatisticalAggregationSumMeanDAT import StatisticalAggregationSumMeanDAT
 from ViewData import ViewData
 
 def execute_files(n_times):
-    for i in n_times:
+    for i in range(n_times):
         FileTypes()
         InputOutputDAT()
         MissingDataDAT()
