@@ -126,7 +126,7 @@ class RunnerConfig:
         print("CURRENT WORKING DIR:")
         print(os.getcwd())
         print("the lib is:", library)
-        subprocess.run(['python3', f'examples/pandas-polars/Code/DAT/{library}/{folder}/{file_name}'])
+        self.target = subprocess.run(['python3', f'examples/pandas-polars/Code/DAT/{library}/{folder}/{file_name}'])
 
 
         
