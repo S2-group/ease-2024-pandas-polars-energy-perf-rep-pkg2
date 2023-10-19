@@ -9,6 +9,8 @@ import os, shutil
 # Specify the desired working directory
 
 def execute_files(n_times):
+    current_directory = os.getcwd()
+    print("Current Working Directory:", current_directory)
     folder = './Code/DAT/Pandas/Big_Dataset_Size/OUTPUT_FILES'
 
     for i in range(n_times):
