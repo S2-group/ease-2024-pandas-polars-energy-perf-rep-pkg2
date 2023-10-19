@@ -28,11 +28,11 @@ def save_parquet(df, path):
     return df.write_parquet(path)
 
 def InputOutputDAT():
-    folder = 'Code/DAT/Polars/Big_Dataset_Size/OUTPUT_FILES'
+    folder = './OUTPUT_FILES'
     # # Read operations
     df = load_json(path=f"{folder}/Polars_Big.json")
 
-    df = load_csv(path='Data/big_dataset.csv')
+    df = load_csv(path='../../../../Data/big_dataset.csv')
     df = load_parquet(path=f"{folder}/Polars_Big.parquet")
 
     save_csv(df, f'df_adult_pandas_1.csv')

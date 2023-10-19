@@ -9,7 +9,7 @@ small_ds_size = 1000
 def MissingDataDAT():
     ############## COUNT MISSING VALUES AND REMOVE THEM ###############
 
-    df = pl.read_csv('Data/big_dataset.csv', n_rows=small_ds_size)
+    df = pl.read_csv('../../../../Data/big_dataset.csv', n_rows=small_ds_size)
     df_drop = df.clone()
     df_fill = df.clone()
 

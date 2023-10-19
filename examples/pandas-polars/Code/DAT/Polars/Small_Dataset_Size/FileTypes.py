@@ -5,7 +5,7 @@ import polars as pl
 def FileTypes():
     small_ds_size = 1000
 
-    folder = 'Code/DAT/Polars/Big_Dataset_Size/OUTPUT_FILES'
+    folder = './OUTPUT_FILES'
     for filename in os.listdir(folder):
         file_path = os.path.join(folder, filename)
         try:
@@ -17,7 +17,7 @@ def FileTypes():
             print('Failed to delete %s. Reason: %s' % (file_path, e))
 
     # Load the CSV file into a Polars DataFrame
-    df = pl.read_csv('Data/big_dataset.csv',n_rows=small_ds_size)
+    df = pl.read_csv('../../../../Data/big_dataset.csv',n_rows=small_ds_size)
 
     # Convert the DataFrame to JSON format
     df.write_json(f"{folder}/Polars_Big.json")  # Converts each row to a JSON object

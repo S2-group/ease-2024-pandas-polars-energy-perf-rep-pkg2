@@ -29,8 +29,8 @@ def concat_dataframes(df1, df2):
 def RowColumnDAT():
     # # Row Column Operations
 
-    df = pl.read_csv('Data/big_dataset.csv',n_rows=small_ds_size)
-    df_samp = pl.read_csv('Data/big_dataset.csv',n_rows=small_ds_size)
+    df = pl.read_csv('../../../../Data/big_dataset.csv',n_rows=small_ds_size)
+    df_samp = pl.read_csv('../../../../Data/big_dataset.csv',n_rows=small_ds_size)
 
     # print(drop(df, cnameArray=['Professional', 'Unemployment']))
     # groupby(df, cname='State')
