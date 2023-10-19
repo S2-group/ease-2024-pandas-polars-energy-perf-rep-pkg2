@@ -40,6 +40,6 @@ def InputOutputDAT(output_files, data_file):
     new_JSON = os.path.join(output_files, "df_adult_polars_1.json")
     new_parque = os.path.join(output_files, "df_adult_polars_1.parquet")
 
-    save_csv(new_Csv)
-    save_json(new_JSON)
-    save_parquet(new_parque)
+    save_csv(df, new_Csv)
+    save_json(df, new_JSON)
+    save_parquet(df, new_parque)
