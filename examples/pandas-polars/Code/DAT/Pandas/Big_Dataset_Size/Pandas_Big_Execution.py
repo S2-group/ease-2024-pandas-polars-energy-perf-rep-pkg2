@@ -26,11 +26,11 @@ def execute_files(n_times):
     #         except Exception as e:
     #             print('Failed to delete %s. Reason: %s' % (file_path, e))
     FileTypes(output_files, data_files)
-        # MissingDataDAT()
-        # StatisticalAggregationMinMaxUnique()
-        # StatisticalAggregationSumMeanDAT()
-    #ViewData(output_files, data_files)
-        # InputOutputDAT()
+    MissingDataDAT(output_files, data_files)
+    StatisticalAggregationMinMaxUnique(output_files, data_files)
+    StatisticalAggregationSumMeanDAT(output_files, data_files)
+    ViewData(output_files, data_files)
+    InputOutputDAT(output_files, data_files)
 
 
 execute_files(10)
