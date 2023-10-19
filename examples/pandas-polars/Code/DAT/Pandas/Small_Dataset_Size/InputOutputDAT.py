@@ -16,7 +16,7 @@ def InputOutputDAT():
 
     # Read json dataset
     def load_json(path):
-        return pd.read_json(path, nrows=small_ds_size)
+        return pd.read_json(path, nrows=small_ds_size, lines=True)
 
 
     def save_csv(df, path):
@@ -39,6 +39,6 @@ def InputOutputDAT():
 
     df = load_parquet(path=f"{folder}/Pandas_Small.parquet")
 
-    save_csv(df, f'df_adult_pandas_1.csv')
-    save_json(df, f'df_adult_pandas_1.json')
-    save_parquet(df, f'df_adult_pandas_1.parquet')
+    save_csv(df, f'{folder}/df_adult_pandas_1.csv')
+    save_json(df, f'{folder}/df_adult_pandas_1.json')
+    save_parquet(df, f'{folder}/df_adult_pandas_1.parquet')

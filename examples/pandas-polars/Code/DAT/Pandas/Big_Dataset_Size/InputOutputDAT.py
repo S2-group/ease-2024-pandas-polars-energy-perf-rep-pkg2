@@ -36,6 +36,6 @@ def InputOutputDAT():
 
     df = load_parquet(path=f"{folder}/Pandas_Big.parquet")
 
-    save_csv(df, f'df_adult_pandas_1.csv')
-    save_json(df, f'df_adult_pandas_1.json')
-    save_parquet(df, f'df_adult_pandas_1.parquet')
+    save_csv(df, f'{folder}/df_adult_pandas_1.csv')
+    save_json(df, f'{folder}/df_adult_pandas_1.json')
+    save_parquet(df, f'{folder}/df_adult_pandas_1.parquet')

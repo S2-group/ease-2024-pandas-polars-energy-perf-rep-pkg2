@@ -18,9 +18,10 @@ def StatisticalAggregationMinMaxUnique():
 
     ### Statistical Operations
 
-
-    MinIncome = min(df['MeanIncome'])
-    MaxIncome = max(df['MeanIncome'])
-    States = unique(df['MeanIncome'])
+    MinIncome = min(df['Income'])
+    MaxIncome = max(df['Income'])
+    States = unique(df['State'])
 
     print(f"\n MinIncome: {MinIncome},\n MaxIncome: {MaxIncome},\n States: {States}")
+
+StatisticalAggregationMinMaxUnique()
