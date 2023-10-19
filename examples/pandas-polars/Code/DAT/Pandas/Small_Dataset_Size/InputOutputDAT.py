@@ -31,8 +31,8 @@ def InputOutputDAT(output_files, data_file):
     def save_parquet(df, path):
         return df.to_parquet(path)
 
-    PandasSmall_json = os.path.join(output_files, "Pandas_Big.json")
-    PandasSmall_parquet = os.path.join(output_files, "Pandas_Big.parquet")
+    PandasSmall_json = os.path.join(output_files, "Pandas_Small.json")
+    PandasSmall_parquet = os.path.join(output_files, "Pandas_Small.parquet")
     # # Read operations
     df = load_json(PandasSmall_json)
 
