@@ -1,6 +1,7 @@
+import os
 import polars as pl
 
-def InputOutputDAT():
+def InputOutputDAT(output_files, data_file):
     # Read csv dataset
     def load_csv(path):
         return pl.read_csv(path)
@@ -27,14 +28,18 @@ def InputOutputDAT():
     def save_parquet(df, path):
         return df.write_parquet(path)
 
+    PolarsBig_json = os.path.join(output_files, "Polars_Big.json")
+    PolarsBig_parquet = os.path.join(output_files, "Polars_Big.parquet")
 
-    folder = './OUTPUT_FILES'
     # # Read operations
-    df = load_json(path=f"{folder}/Polars_Big.json")
+    df = load_csv(data_file)
+    df = load_json(PolarsBig_json)
+    df = load_parquet(PolarsBig_parquet)
 
-    df = load_csv(path='../../../../Data/big_dataset.csv')
-    df = load_parquet(path=f"{folder}/Polars_Big.parquet")
+    new_Csv = os.path.join(output_files, "df_adult_polars_1.csv")
+    new_JSON = os.path.join(output_files, "df_adult_polars_1.json")
+    new_parque = os.path.join(output_files, "df_adult_polars_1.parquet")
 
-    save_csv(df, f'{folder}/df_adult_pandas_1.csv')
-    save_json(df, f'{folder}/df_adult_pandas_1.json')
-    save_parquet(df, f'{folder}/df_adult_pandas_1.parquet')
+    save_csv(df, new_Csv)
+    save_json(df, new_JSON)
+    save_parquet(df, new_parque)

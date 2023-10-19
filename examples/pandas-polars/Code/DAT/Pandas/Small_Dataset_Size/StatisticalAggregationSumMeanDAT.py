@@ -1,11 +1,11 @@
 
 import pandas as pd
 
-def StatisticalAggregationSumMeanDAT():
+def StatisticalAggregationSumMeanDAT(output_files,data_files):
 
     small_ds_size = 1000
 
-    df = pd.read_csv('../../../../Data/big_dataset.csv',nrows=small_ds_size)
+    df = pd.read_csv(data_files,nrows=small_ds_size)
 
     def count(df:pd.DataFrame):
         return df.count(axis=0)

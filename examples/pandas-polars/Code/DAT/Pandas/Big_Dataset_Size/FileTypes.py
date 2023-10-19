@@ -2,15 +2,16 @@
 import os, shutil
 import pandas as pd
 
-def FileTypes():
-    folder = './OUTPUT_FILES'
-
+def FileTypes(output_files, data_file):
 
     # Load the CSV file into a Pandas DataFrame
-    df = pd.read_csv('../../../../Data/big_dataset.csv')
+    df = pd.read_csv(data_file)
+
+    PandasBig_json = os.path.join(output_files, "Pandas_Big.json")
+    PandasBig_parquet = os.path.join(output_files, "Pandas_Big.parquet")
 
     # Convert the DataFrame to JSON format
-    df.to_json(f"{folder}/Pandas_Big.json")  # Converts each row to a JSON object
+    df.to_json(PandasBig_json)  # Converts each row to a JSON object
 
     # Convert the DataFrame to parquet format
-    df.to_parquet(f"{folder}/Pandas_Big.parquet")
+    df.to_parquet(PandasBig_parquet)

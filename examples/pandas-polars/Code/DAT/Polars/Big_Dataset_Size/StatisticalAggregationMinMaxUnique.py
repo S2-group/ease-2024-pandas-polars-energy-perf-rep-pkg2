@@ -12,9 +12,9 @@ def max(df: pl.DataFrame):
 def unique(df: pl.DataFrame):
     return df.unique(maintain_order=True)
 
-def StatisticalAggregationMinMaxUnique():
+def StatisticalAggregationMinMaxUnique(output_files, data_file):
     # Perform statistical operations
-    df = pl.read_csv('../../../../Data/big_dataset.csv')
+    df = pl.read_csv(data_file)
     MinIncome = min(df['Income'])
     MaxIncome = max(df['Income'])
     States = unique(df['State'])

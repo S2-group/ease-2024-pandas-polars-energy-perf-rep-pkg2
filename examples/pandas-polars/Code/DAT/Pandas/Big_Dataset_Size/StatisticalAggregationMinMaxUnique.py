@@ -1,8 +1,8 @@
 
 import pandas as pd
 
-def StatisticalAggregationMinMaxUnique():
-    df = pd.read_csv('../../../../Data/big_dataset.csv')
+def StatisticalAggregationMinMaxUnique(output_files, data_file):
+    df = pd.read_csv(data_file)
 
 
     # min
@@ -24,4 +24,3 @@ def StatisticalAggregationMinMaxUnique():
 
     print(f"\n MinIncome: {MinIncome},\n MaxIncome: {MaxIncome},\n States: {States}")
 
-StatisticalAggregationMinMaxUnique()

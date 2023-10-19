@@ -123,10 +123,10 @@ class RunnerConfig:
                 folder = "Small_Dataset_Size"
                 file_name = "Polars_Small_Execution.py"
 
-        print("CURRENT WORKING DIR:")
-        print(os.getcwd())
-        print("the lib is:", library)
+
+        #print("the lib is:", library)
         self.target = subprocess.run(['python3', f'examples/pandas-polars/Code/DAT/{library}/{folder}/{file_name}'])
+        #subprocess.run(['python3', f'examples/pandas-polars/Code/DAT/Polars/Big_Dataset_Size/Polars_Big_Execution.py'])
 
 
         

@@ -16,7 +16,6 @@ def groupby(df, cname):
 def merge(df1, df2, on=None):
     # KARO - I used pd.concat with an "outer" join to concatenate the two DataFrames along the rows. 
     # This operation allows duplications and combines all rows from both DataFrames.
-    # I THINK IT IS BETTER THAN merge with if but let's talk
     return pd.concat([df1, df2], axis=0, ignore_index=True)
     
     # if on:
@@ -34,17 +33,13 @@ def concat_dataframes(df1, df2):
 
 
 # # Row Column Operations
-if __name__ == '__main__':
-    i=0
-    while(i<10):
-        df = pd.read_csv('./big_dataset.csv')
-        df_samp = pd.read_csv('./big_dataset.csv')
-        drop(df, cnameArray=['Professional', 'Unemployment'])
-        groupby(df, cname='State')
-        SAMPLE_SIZE = 20000
-        df_samp = df.sample(SAMPLE_SIZE)
-        concat_dataframes(df, df_samp)
-        sort(df, 'VotingAgeCitizen')
-        merge(df, df_samp)
-        print("Still inside while loop")
-        i = i+1
+def RowColumnDAT(output_files, data_file):
+    df = pd.read_csv(data_file)
+    df_samp = pd.read_csv(data_file)
+    drop(df, cnameArray=['Professional', 'Unemployment'])
+    groupby(df, cname='State')
+    SAMPLE_SIZE = 20000
+    df_samp = df.sample(SAMPLE_SIZE)
+    concat_dataframes(df, df_samp)
+    sort(df, 'VotingAgeCitizen')
+    merge(df, df_samp)

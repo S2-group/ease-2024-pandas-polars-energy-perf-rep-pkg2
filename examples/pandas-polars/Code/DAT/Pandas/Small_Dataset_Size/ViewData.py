@@ -1,10 +1,10 @@
 import pandas as pd
 
-def ViewData():
+def ViewData(output_files,data_files):
 
     small_ds_size = 1000
     # Create a sample DataFrame
-    df = pd.read_csv('../../../../Data/big_dataset.csv',nrows=small_ds_size)
+    df = pd.read_csv(data_files,nrows=small_ds_size)
 
     # Display the DataFrame
     print("Pandas: Display DataFrame using head()")

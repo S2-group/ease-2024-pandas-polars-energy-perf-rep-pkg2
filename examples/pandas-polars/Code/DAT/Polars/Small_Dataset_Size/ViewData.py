@@ -1,6 +1,6 @@
 import polars as pl
 
-def ViewData():
+def ViewData(output_files, data_file):
     small_ds_size = 1000
     # Create a sample DataFrame
     df = pl.read_csv('../../../../Data/big_dataset.csv', n_rows=small_ds_size)

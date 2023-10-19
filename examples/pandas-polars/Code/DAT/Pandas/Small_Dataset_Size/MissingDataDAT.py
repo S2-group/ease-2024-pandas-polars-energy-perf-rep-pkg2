@@ -2,12 +2,12 @@
 
 import pandas as pd
 
-def MissingDataDAT():
+def MissingDataDAT(output_files,data_files):
 
     small_ds_size = 1000
     ############## COUNT MISSING VALUES AND REMOVE THEM ###############
 
-    df = pd.read_csv('../../../../Data/big_dataset.csv', nrows=small_ds_size)
+    df = pd.read_csv(data_files, nrows=small_ds_size)
     df_drop = df.copy()
     df_fill = df.copy()
 

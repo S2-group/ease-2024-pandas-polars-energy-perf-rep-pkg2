@@ -23,11 +23,11 @@ def sort(df, cname):
 def concat_dataframes(df1, df2):
     return pl.concat([df1, df2])
 
-def RowColumnDAT():
+def RowColumnDAT(output_files, data_file):
     # # Row Column Operations
 
-    df = pl.read_csv('../../../../Data/big_dataset.csv')
-    df_samp = pl.read_csv('../../../../Data/big_dataset.csv')
+    df = pl.read_csv(data_file)
+    df_samp = pl.read_csv(data_file)
 
     # print(drop(df, cnameArray=['Professional', 'Unemployment']))
     # groupby(df, cname='State')
