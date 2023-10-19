@@ -112,16 +112,16 @@ class RunnerConfig:
             if(dataframe_size == "Big"):
                 folder = "Big_Dataset_Size"
                 file_name = "Pandas_Big_Execution.py"
-            else:
-                folder = "Small_Dataset_Size"
-                file_name = "Pandas_Small_Execution.py"
-        elif(library=="Polars"):
-            if(dataframe_size == "Big"):
-                folder = "Big_Dataset_Size"
-                file_name = "Polars_Big_Execution.py"
-            else:
-                folder = "Small_Dataset_Size"
-                file_name = "Polars_Small_Execution.py"
+        #     else:
+        #         folder = "Small_Dataset_Size"
+        #         file_name = "Pandas_Small_Execution.py"
+        # elif(library=="Polars"):
+        #     if(dataframe_size == "Big"):
+        #         folder = "Big_Dataset_Size"
+        #         file_name = "Polars_Big_Execution.py"
+        #     else:
+        #         folder = "Small_Dataset_Size"
+        #         file_name = "Polars_Small_Execution.py"
 
         print("CURRENT WORKING DIR:")
         print(os.getcwd())

@@ -24,4 +24,3 @@ def StatisticalAggregationMinMaxUnique():
 
     print(f"\n MinIncome: {MinIncome},\n MaxIncome: {MaxIncome},\n States: {States}")
 
-StatisticalAggregationMinMaxUnique()

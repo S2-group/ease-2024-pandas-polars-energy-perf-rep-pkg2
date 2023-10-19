@@ -6,8 +6,10 @@ from StatisticalAggregationSumMeanDAT import StatisticalAggregationSumMeanDAT
 from ViewData import ViewData
 import os, shutil
 
+# Specify the desired working directory
+
 def execute_files(n_times):
-    folder = './OUTPUT_FILES'
+    folder = './Code/DAT/Pandas/Big_Dataset_Size/OUTPUT_FILES'
 
     for i in range(n_times):
         for filename in os.listdir(folder):
@@ -20,11 +22,12 @@ def execute_files(n_times):
             except Exception as e:
                 print('Failed to delete %s. Reason: %s' % (file_path, e))
         FileTypes()
-        InputOutputDAT()
-        MissingDataDAT()
-        StatisticalAggregationMinMaxUnique()
-        StatisticalAggregationSumMeanDAT()
-        ViewData()
+        # MissingDataDAT()
+        # StatisticalAggregationMinMaxUnique()
+        # StatisticalAggregationSumMeanDAT()
+        # ViewData()
+        # InputOutputDAT()
+
 
 execute_files(10)
 

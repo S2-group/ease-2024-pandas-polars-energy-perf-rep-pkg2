@@ -32,7 +32,7 @@ def InputOutputDAT():
     # # Read operations
     df = load_json(path=f"{folder}/Pandas_Big.json")
 
-    df = load_csv(path='../../../../Data/big_dataset.csv')
+    df = load_csv(path='./../../../../Data/big_dataset.csv')
 
     df = load_parquet(path=f"{folder}/Pandas_Big.parquet")
 
