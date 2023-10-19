@@ -126,7 +126,7 @@ class RunnerConfig:
 
         #print("the lib is:", library)
         #subprocess.run(['python3', f'examples/pandas-polars/Code/DAT/{library}/{folder}/{file_name}'])
-        subprocess.run(['python3', f'examples/pandas-polars/Code/DAT/Pandas/Big_Dataset_Size/Pandas_Small_Execution.py'])
+        subprocess.run(['python3', f'examples/pandas-polars/Code/DAT/Pandas/Small_Dataset_Size/Pandas_Small_Execution.py'])
 
 
         
