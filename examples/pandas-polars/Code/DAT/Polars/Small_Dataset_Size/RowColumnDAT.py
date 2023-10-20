@@ -15,7 +15,7 @@ def groupby(df, cname):
 
 
 def merge(df1, df2, on=None):
-    return df1.cross_join(df2)
+    return df1.join(df2, how='cross')
 
 
 def sort(df, cname):
@@ -36,11 +36,8 @@ def RowColumnDAT(output_files, data_file):
     # groupby(df, cname='State')
 
 
-    SAMPLE_SIZE = 20000
+    SAMPLE_SIZE = 200
     df_samp = df.sample(SAMPLE_SIZE)
     concat_dataframes(df, df_samp)
     sort(df, 'VotingAgeCitizen')
     merge(df, df_samp)
-
-
-

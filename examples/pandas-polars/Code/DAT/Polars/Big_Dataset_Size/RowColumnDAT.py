@@ -12,8 +12,8 @@ def groupby(df, cname):
 ## do we want to do count?? -- doesn't do the same thing as pandas?
 
 
-def merge(df1, df2, on=None):
-    return df1.cross_join(df2)
+def merge(df1:pl.DataFrame, df2, on=None):
+    return df1.join(df2, how='cross')
 
 
 def sort(df, cname):

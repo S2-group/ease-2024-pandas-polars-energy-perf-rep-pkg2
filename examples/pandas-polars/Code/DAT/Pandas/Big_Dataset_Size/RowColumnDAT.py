@@ -16,7 +16,7 @@ def groupby(df, cname):
 def merge(df1, df2, on=None):
     # KARO - I used pd.concat with an "outer" join to concatenate the two DataFrames along the rows. 
     # This operation allows duplications and combines all rows from both DataFrames.
-    return pd.concat([df1, df2], axis=0, ignore_index=True)
+    return df1.merge(df2, how="cross")
     
     # if on:
     #     return pd.merge(df1, df2, on=on)
