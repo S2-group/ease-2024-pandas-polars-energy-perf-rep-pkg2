@@ -173,16 +173,18 @@ class RunnerConfig:
         """Parse and process any measurement data here.
         You can also store the raw measurement data under `context.run_dir`
         Returns a dictionary with keys `self.run_table_model.data_columns` and their values populated"""
-
         # powerjoular.csv - Power consumption of the whole system
         # powerjoular.csv-PID.csv - Power consumption of that specific process
         psdf = pd.DataFrame(columns=['cpu_usage', 'memory_usage'])
         for i, l in enumerate(self.performance_profiler.stdout.readlines()):
-             decoded_line = l.decode('ascii').strip()
-             decoded_arr = decoded_line.split()
-             cpu_usage = float(decoded_arr[0])
-             memory_usage = float(decoded_arr[1])
-             psdf.loc[i] = [cpu_usage, memory_usage]
+            decoded_line = l.decode('ascii').strip()
+            decoded_arr = decoded_line.split()
+            cpu_usage = float(decoded_arr[0])
+            memory_usage = float(decoded_arr[1])
+            psdf.loc[i] = [cpu_usage, memory_usage]
+            print("TRYING TO FIND OUT WHY SMALL AND POLARS DONT WORK!!!!!!!!!!!!!!!!!!")
+            print(decoded_arr)
+
         psdf.to_csv(context.run_dir / 'raw_data.csv', index=False)
 
         output_file = f'{context.run_dir}/powerjoular-filtered-data.csv-{self.target.pid}.csv'
