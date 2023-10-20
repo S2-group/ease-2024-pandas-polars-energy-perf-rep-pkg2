@@ -34,7 +34,7 @@ def execute_files(n_times):
         InputOutputDAT(output_files, data_files)
 
 
-execute_files(10)
+execute_files(100)
 
 
         

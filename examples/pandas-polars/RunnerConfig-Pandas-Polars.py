@@ -123,7 +123,7 @@ class RunnerConfig:
                 file_name = "Polars_Small_Execution.py"
 
 
-        self.target = subprocess.Popen(['python3', f'examples/pandas-polars/Code/DAT/Polars/Small_Dataset_Size/Polars_Small_Execution.py'])
+        self.target = subprocess.Popen(['python3', f'examples/pandas-polars/Code/DAT/{library}/{folder}/{file_name}'])
 
 
         print("hellooooooo I am here", self.target.pid)
@@ -182,7 +182,6 @@ class RunnerConfig:
             cpu_usage = float(decoded_arr[0])
             memory_usage = float(decoded_arr[1])
             psdf.loc[i] = [cpu_usage, memory_usage]
-            print("TRYING TO FIND OUT WHY SMALL AND POLARS DONT WORK!!!!!!!!!!!!!!!!!!")
 
         psdf.to_csv(context.run_dir / 'raw_data.csv', index=False)
 
