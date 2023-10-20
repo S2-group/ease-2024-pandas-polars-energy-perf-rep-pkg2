@@ -1,8 +1,5 @@
 import polars as pl
 
-small_ds_size = 1000
-
-
 def drop(df, cnameArray):
     return df.drop(columns=cnameArray)
 
@@ -29,8 +26,8 @@ def concat_dataframes(df1, df2):
 def RowColumnDAT(output_files, data_file):
     # # Row Column Operations
 
-    df = pl.read_csv(data_file,n_rows=small_ds_size)
-    df_samp = pl.read_csv(data_file,n_rows=small_ds_size)
+    df = pl.read_csv(data_file)
+    df_samp = pl.read_csv(data_file)
 
     # print(drop(df, cnameArray=['Professional', 'Unemployment']))
     # groupby(df, cname='State')

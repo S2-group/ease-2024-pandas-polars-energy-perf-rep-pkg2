@@ -5,11 +5,8 @@ import pandas as pd
 
 def FileTypes(output_files, data_file):
 
-    small_ds_size = 1000
-
-
     # Load the CSV file into a Pandas DataFrame
-    df = pd.read_csv(data_file,nrows=small_ds_size)
+    df = pd.read_csv(data_file)
 
     PandasSmall_json = os.path.join(output_files, "Pandas_Small.json")
     PandasSmall_parquet = os.path.join(output_files, "Pandas_Small.parquet")

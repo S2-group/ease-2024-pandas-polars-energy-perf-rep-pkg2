@@ -1,9 +1,8 @@
 import polars as pl
 
 def ViewData(output_files, data_file):
-    small_ds_size = 1000
     # Create a sample DataFrame
-    df = pl.read_csv(data_file, n_rows=small_ds_size)
+    df = pl.read_csv(data_file)
 
     # # Display the DataFrame
     # print("Polars: Display DataFrame using head()")

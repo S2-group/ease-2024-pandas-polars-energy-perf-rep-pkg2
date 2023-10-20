@@ -3,11 +3,10 @@ import pandas as pd
 
 
 def InputOutputDAT(output_files, data_file):
-    small_ds_size = 1000
 
     # Read csv dataset
     def load_csv(path):
-        return pd.read_csv(path,nrows=small_ds_size)
+        return pd.read_csv(path)
 
 
     # Read parquet dataset
@@ -17,7 +16,7 @@ def InputOutputDAT(output_files, data_file):
 
     # Read json dataset
     def load_json(path):
-        return pd.read_json(path, nrows=small_ds_size, lines=True)
+        return pd.read_json(path)
 
 
     def save_csv(df, path):

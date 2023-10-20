@@ -11,9 +11,9 @@ import os, shutil
 def execute_files(n_times):
     for i in range(n_times):
         current_directory = os.getcwd()
-        print("Current Working Directory:", current_directory)
         output_files = './examples/pandas-polars/Code/DAT/Pandas/Big_Dataset_Size/OUTPUT_FILES'
-        data_files = './examples/pandas-polars/Data/big_dataset.csv'
+        big_data_files = './examples/pandas-polars/Data/final_big_dataset.csv'
+
 
 
         # for i in range(n_times):
@@ -26,15 +26,15 @@ def execute_files(n_times):
         #                 shutil.rmtree(file_path)
         #         except Exception as e:
         #             print('Failed to delete %s. Reason: %s' % (file_path, e))
-        FileTypes(output_files, data_files)
-        MissingDataDAT(output_files, data_files)
-        StatisticalAggregationMinMaxUnique(output_files, data_files)
-        StatisticalAggregationSumMeanDAT(output_files, data_files)
-        ViewData(output_files, data_files)
-        InputOutputDAT(output_files, data_files)
+        FileTypes(output_files, big_data_files)
+        MissingDataDAT(output_files, big_data_files)
+        StatisticalAggregationMinMaxUnique(output_files, big_data_files)
+        StatisticalAggregationSumMeanDAT(output_files, big_data_files)
+        ViewData(output_files, big_data_files)
+        InputOutputDAT(output_files, big_data_files)
 
 
-execute_files(100)
+execute_files(10)
 
 
         

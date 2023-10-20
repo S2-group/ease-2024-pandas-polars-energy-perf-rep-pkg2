@@ -3,10 +3,8 @@ import polars as pl
 
 def InputOutputDAT(output_files, data_file):
     # Read csv dataset
-    small_ds_size = 1000
-
     def load_csv(path):
-        return pl.read_csv(path, n_rows=small_ds_size)
+        return pl.read_csv(path)
 
 
     # Read parquet dataset

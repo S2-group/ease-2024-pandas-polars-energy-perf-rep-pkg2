@@ -12,3 +12,9 @@ tmp/
 _trial_temp/
 pycharm-interpreter.sh
 python
+examples/pandas-polars/Data/final_small_dataset.csv
+examples/pandas-polars/Data/final_big_dataset.csv
+examples/pandas-polars/Code/DAT/Polars/Big_Dataset_Size/OUTPUT_FILES
+examples/pandas-polars/Code/DAT/Polars/Small_Dataset_Size/OUTPUT_FILES
+examples/pandas-polars/Code/DAT/Pandas/Big_Dataset_Size/OUTPUT_FILES
+examples/pandas-polars/Code/DAT/Pandas/Small_Dataset_Size/OUTPUT_FILES

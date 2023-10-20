@@ -2,10 +2,10 @@
 import os, shutil
 import pandas as pd
 
-def FileTypes(output_files, data_file):
+def FileTypes(output_files, data_files):
 
     # Load the CSV file into a Pandas DataFrame
-    df = pd.read_csv(data_file)
+    df = pd.read_csv(data_files)
 
     PandasBig_json = os.path.join(output_files, "Pandas_Big.json")
     PandasBig_parquet = os.path.join(output_files, "Pandas_Big.parquet")

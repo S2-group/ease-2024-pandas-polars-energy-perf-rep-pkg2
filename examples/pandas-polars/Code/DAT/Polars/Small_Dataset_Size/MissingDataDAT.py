@@ -4,12 +4,11 @@
 
 import polars as pl
 #import pandas as pd
-small_ds_size = 1000
 
 def MissingDataDAT(output_files, data_file):
     ############## COUNT MISSING VALUES AND REMOVE THEM ###############
 
-    df = pl.read_csv(data_file, n_rows=small_ds_size)
+    df = pl.read_csv(data_file)
     df_drop = df.clone()
     df_fill = df.clone()
 

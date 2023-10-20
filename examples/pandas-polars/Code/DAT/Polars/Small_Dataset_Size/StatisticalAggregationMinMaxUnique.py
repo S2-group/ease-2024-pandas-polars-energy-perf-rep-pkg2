@@ -1,9 +1,8 @@
 import polars as pl
 
 def StatisticalAggregationMinMaxUnique(output_files, data_file):
-    small_ds_size = 1000
     # Load the CSV data into a Polars DataFrame
-    df = pl.read_csv(data_file, n_rows=small_ds_size)
+    df = pl.read_csv(data_file)
 
 
     # Define a function to find the minimum value of all columns

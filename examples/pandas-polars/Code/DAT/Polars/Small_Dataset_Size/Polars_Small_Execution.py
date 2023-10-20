@@ -4,7 +4,6 @@ from MissingDataDAT import MissingDataDAT
 from StatisticalAggregationMinMaxUnique import StatisticalAggregationMinMaxUnique
 from StatisticalAggregationSumMeanDAT import StatisticalAggregationSumMeanDAT
 from ViewData import ViewData
-from RowColumnDAT import RowColumnDAT
 import os, shutil
 
 # Specify the desired working directory
@@ -12,9 +11,8 @@ import os, shutil
 def execute_files(n_times):
     for i in range(n_times):
         current_directory = os.getcwd()
-        print("Current Working Directory:", current_directory)
         output_files = './examples/pandas-polars/Code/DAT/Polars/Small_Dataset_Size/OUTPUT_FILES'
-        data_files = './examples/pandas-polars/Data/big_dataset.csv'
+        small_data_files = './examples/pandas-polars/Data/final_small_dataset.csv'
 
 
         # for i in range(n_times):
@@ -27,16 +25,15 @@ def execute_files(n_times):
         #                 shutil.rmtree(file_path)
         #         except Exception as e:
         #             print('Failed to delete %s. Reason: %s' % (file_path, e))
-        FileTypes(output_files, data_files)
-        MissingDataDAT(output_files, data_files)
-        StatisticalAggregationMinMaxUnique(output_files, data_files)
-        StatisticalAggregationSumMeanDAT(output_files, data_files)
-        RowColumnDAT(output_files, data_files)
-        ViewData(output_files, data_files)
-        InputOutputDAT(output_files, data_files)
+        FileTypes(output_files, small_data_files)
+        MissingDataDAT(output_files, small_data_files)
+        StatisticalAggregationMinMaxUnique(output_files, small_data_files)
+        StatisticalAggregationSumMeanDAT(output_files, small_data_files)
+        ViewData(output_files, small_data_files)
+        InputOutputDAT(output_files, small_data_files)
 
 
-execute_files(100)
+execute_files(10)
 
 
-        
+      
