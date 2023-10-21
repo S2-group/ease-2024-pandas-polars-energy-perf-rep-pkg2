@@ -39,7 +39,7 @@ def RowColumnDAT(output_files, data_file):
     sort(df, 'VotingAgeCitizen')
     merge(df, df_samp)
 
-for i in range(15):
+for i in range(10):
     output_files = './examples/pandas-polars/Code/DAT/Polars/Small_Dataset_Size/OUTPUT_FILES'
     small_data_files = './examples/pandas-polars/Data/final_small_dataset.csv'
     RowColumnDAT(output_files, small_data_files)
