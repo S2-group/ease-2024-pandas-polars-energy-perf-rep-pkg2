@@ -28,7 +28,7 @@ def StatisticalAggregationSumMeanDAT(output_files, data_file):
     print(f"{dfCount}\nsummedIncome: {summedIncome},\n MeanIncome: {MeanIncome}")
 
 
-for i in range(15):
+for i in range(10):
     output_files = './examples/pandas-polars/Code/DAT/Polars/Big_Dataset_Size/OUTPUT_FILES'
     big_data_files = './examples/pandas-polars/Data/final_big_dataset.csv'
     StatisticalAggregationSumMeanDAT(output_files, big_data_files)
