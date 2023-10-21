@@ -43,3 +43,8 @@ def RowColumnDAT(output_files, data_file):
     concat_dataframes(df, df_samp)
     sort(df, 'VotingAgeCitizen')
     merge(df, df_samp)
+
+for i in range(15):
+    output_files = './examples/pandas-polars/Code/DAT/Pandas/Big_Dataset_Size/OUTPUT_FILES'
+    big_data_files = './examples/pandas-polars/Data/final_big_dataset.csv'
+    RowColumnDAT(output_files, big_data_files)

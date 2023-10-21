@@ -40,4 +40,8 @@ def RowColumnDAT(output_files, data_file):
     merge(df, df_samp)
 
 
+for i in range(15):
+    output_files = './examples/pandas-polars/Code/DAT/Polars/Big_Dataset_Size/OUTPUT_FILES'
+    big_data_files = './examples/pandas-polars/Data/final_big_dataset.csv'
+    RowColumnDAT(output_files, big_data_files)
 
