@@ -33,11 +33,11 @@ def InputOutputDAT(output_files, data_file):
     PandasBig_json = os.path.join(output_files, "Pandas_Big.json")
     PandasBig_parquet = os.path.join(output_files, "Pandas_Big.parquet")
 
-    df = load_json(path=PandasBig_json)
+    jdf = load_json(path=PandasBig_json)
 
-    df = load_csv(path=data_file)
+    cdf = load_csv(path=data_file)
 
-    df = load_parquet(path=PandasBig_parquet)
+    pdf = load_parquet(path=PandasBig_parquet)
 
     print("After load operations")
 
@@ -46,9 +46,9 @@ def InputOutputDAT(output_files, data_file):
     new_parque = os.path.join(output_files, "df_adult_pandas_1.parquet")
 
     print("Before save")
-    save_csv(df, new_Csv)
-    save_json(df, new_JSON)
-    save_parquet(df, new_parque)
+    save_csv(cdf, new_Csv)
+    save_json(jdf, new_JSON)
+    save_parquet(pdf, new_parque)
     print("After Save")
 
 
