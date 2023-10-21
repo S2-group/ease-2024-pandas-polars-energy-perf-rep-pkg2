@@ -27,7 +27,7 @@ def StatisticalAggregationMinMaxUnique(output_files, data_file):
     print(f" MinIncome: {MinIncome},\n MaxIncome: {MaxIncome},\n States: {States}")
 
 
-for i in range(200):
+for i in range(10):
     output_files = './examples/pandas-polars/Code/DAT/Polars/Small_Dataset_Size/OUTPUT_FILES'
     small_data_files = './examples/pandas-polars/Data/final_small_dataset.csv'
     StatisticalAggregationMinMaxUnique(output_files, small_data_files)

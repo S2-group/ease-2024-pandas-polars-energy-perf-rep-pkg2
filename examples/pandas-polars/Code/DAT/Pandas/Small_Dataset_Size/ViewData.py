@@ -21,7 +21,7 @@ def ViewData(output_files,data_files):
     print(df.shape)
 
 
-for i in range(200):
+for i in range(10):
     output_files = './examples/pandas-polars/Code/DAT/Pandas/Small_Dataset_Size/OUTPUT_FILES'
     small_data_files = './examples/pandas-polars/Data/final_small_dataset.csv'
     ViewData(output_files, small_data_files)
