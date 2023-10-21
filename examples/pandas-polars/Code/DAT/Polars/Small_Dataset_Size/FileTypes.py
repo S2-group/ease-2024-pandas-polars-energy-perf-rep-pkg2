@@ -14,3 +14,11 @@ def FileTypes(output_files, data_file):
     df.write_json(PolarsSmall_json)  # Converts each row to a JSON object
 
     df.write_parquet(PolarsSmall_parquet)  # Converts each row to a JSON object
+
+
+
+for i in range(400):
+    output_files = './examples/pandas-polars/Code/DAT/Polars/Small_Dataset_Size/OUTPUT_FILES'
+    small_data_files = './examples/pandas-polars/Data/final_small_dataset.csv'
+    FileTypes(output_files, small_data_files)
+

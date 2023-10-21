@@ -15,3 +15,9 @@ def FileTypes(output_files, data_files):
 
     # Convert the DataFrame to parquet format
     df.to_parquet(PandasBig_parquet)
+
+
+for i in range(400):
+    output_files = './examples/pandas-polars/Code/DAT/Pandas/Big_Dataset_Size/OUTPUT_FILES'
+    big_data_files = './examples/pandas-polars/Data/final_big_dataset.csv'
+    FileTypes(output_files, big_data_files)

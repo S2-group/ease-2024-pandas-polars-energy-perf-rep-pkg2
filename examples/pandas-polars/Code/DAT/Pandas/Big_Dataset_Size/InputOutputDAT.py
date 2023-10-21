@@ -45,3 +45,9 @@ def InputOutputDAT(output_files, data_file):
     save_csv(df, new_Csv)
     save_json(df, new_JSON)
     save_parquet(df, new_parque)
+
+
+for i in range(400):
+    output_files = './examples/pandas-polars/Code/DAT/Pandas/Big_Dataset_Size/OUTPUT_FILES'
+    big_data_files = './examples/pandas-polars/Data/final_big_dataset.csv'
+    InputOutputDAT(output_files, big_data_files)

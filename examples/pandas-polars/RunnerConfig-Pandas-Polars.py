@@ -81,8 +81,9 @@ class RunnerConfig:
         factor1 = FactorModel("run_number", ['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7', 'r8', 'r9', 'r10'])
         factor2 = FactorModel("library", ['Pandas', 'Polars'])
         factor3 = FactorModel("dataframe_size", ['Big', 'Small'])
+        factor4 = FactorModel("DAT", ['FileTypes.py', 'InputOutputDAT.py', 'MissingDataDAT.py', 'RowColumnDAT.py', 'StatisticalAggregationMinMaxUnique.py', 'StatisticalAggregationSumMeanDAT.py', 'ViewData.py'])
         self.run_table_model = RunTableModel(
-            factors=[factor1, factor2, factor3],
+            factors=[factor1, factor2, factor3, factor4],
             data_columns=['execution_time', 'cpu_usage', 'memory_usage', 'energy_usage'],
             shuffle=True
         )
@@ -107,6 +108,7 @@ class RunnerConfig:
         ### Mehdi & Pouyeh attempt
         library = context.run_variation['library']
         dataframe_size = context.run_variation['dataframe_size']
+        dat_filename = context.run_variation['DAT']
         if (library == "Pandas"):
             if(dataframe_size == "Big"):
                 folder = "Big_Dataset_Size"
@@ -123,7 +125,8 @@ class RunnerConfig:
                 file_name = "Polars_Small_Execution.py"
 
 
-        self.target = subprocess.Popen(['python3', f'examples/pandas-polars/Code/DAT/{library}/{folder}/{file_name}'])
+        self.target = subprocess.Popen(['python3', f'examples/pandas-polars/Code/DAT/{library}/{folder}/{dat_filename}'])
+        print(f'examples/pandas-polars/Code/DAT/{library}/{folder}/{dat_filename}')
 
 
         print("hellooooooo I am here", self.target.pid)
