@@ -41,7 +41,8 @@ def MissingDataDAT(output_files, data_file):
             f"\nNULLS AFTER FILL: {missing_counts_after_fill}")
 
 
-for i in range(100):
+for i in range(150):
+    print("Hello I am here")
     output_files = './examples/pandas-polars/Code/DAT/Polars/Small_Dataset_Size/OUTPUT_FILES'
     small_data_files = './examples/pandas-polars/Data/final_small_dataset.csv'
     MissingDataDAT(output_files, small_data_files)
