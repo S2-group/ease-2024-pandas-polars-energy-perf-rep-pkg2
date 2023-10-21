@@ -195,7 +195,6 @@ class RunnerConfig:
             filtered_df[column] = filtered_df[column].astype(float)
         filtered_df.to_csv(output_file, index=False)
 
-        # print(f"Filtered and saved {len(filtered_df)} rows with numeric values.")
         run_data = {
                     'execution_time': (self.timestamp_end - self.timestamp_start).total_seconds(),
                     'cpu_usage': round(psdf['cpu_usage'].mean(), 3),
