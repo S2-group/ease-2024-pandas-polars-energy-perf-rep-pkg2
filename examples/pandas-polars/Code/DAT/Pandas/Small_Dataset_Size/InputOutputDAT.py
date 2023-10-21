@@ -48,7 +48,7 @@ def InputOutputDAT(output_files, data_file):
     save_parquet(df, new_parque)
 
 
-for i in range(10):
+for i in range(15):
     output_files = './examples/pandas-polars/Code/DAT/Pandas/Small_Dataset_Size/OUTPUT_FILES'
     small_data_files = './examples/pandas-polars/Data/final_small_dataset.csv'
     InputOutputDAT(output_files, small_data_files)
