@@ -9,23 +9,28 @@ def InputOutputDAT(output_files, data_file):
 
     # Read parquet dataset
     def load_parquet(path):
+        print("Inside load parquet")
         return pd.read_parquet(path, engine='pyarrow')
 
 
     # Read json dataset
     def load_json(path):
+        print("Inside load json")
         return pd.read_json(path)
 
 
     def save_csv(df, path):
+        print("Inside load csv")
         return df.to_csv(path)
 
 
     def save_json(df, path):
+        print("Inside save json")
         return df.to_json(path)
 
 
     def save_parquet(df, path):
+        print("Inside save parquet")
         return df.to_parquet(path)
 
     # # Read operations
