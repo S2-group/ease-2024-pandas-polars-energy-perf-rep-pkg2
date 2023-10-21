@@ -17,7 +17,7 @@ def FileTypes(output_files, data_file):
 
 
 
-for i in range(15):
+for i in range(1):
     output_files = './examples/pandas-polars/Code/DAT/Polars/Small_Dataset_Size/OUTPUT_FILES'
     small_data_files = './examples/pandas-polars/Data/final_small_dataset.csv'
     FileTypes(output_files, small_data_files)
