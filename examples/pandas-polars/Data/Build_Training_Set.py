@@ -16,7 +16,7 @@ final_small_dataset = pd.concat([sub_dataset, small_duplicated_datset])
 final_small_dataset.to_csv('final_small_dataset.csv', index=False)
 
 # Duplicate the rows of the original dataset to create a second dataset with 2,000,000 rows
-big_duplicated_dataset = df.sample(n=4950000, replace=True)
+big_duplicated_dataset = df.sample(n=49950000, replace=True)
 # 1950000 is used because we already have 50000 rows in the sub_dataset
 
 # Concatenate the sub-dataset and the duplicated dataset
