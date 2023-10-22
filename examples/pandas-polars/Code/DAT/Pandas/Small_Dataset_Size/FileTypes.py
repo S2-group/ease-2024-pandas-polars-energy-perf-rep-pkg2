@@ -20,7 +20,7 @@ def FileTypes(output_files, data_file):
     df.head(200000).to_parquet(PandasSmall_parquet)
 
 
-for i in range(1):
+for i in range(10):
     output_files = './examples/pandas-polars/Code/DAT/Pandas/Small_Dataset_Size/OUTPUT_FILES'
     small_data_files = './examples/pandas-polars/Data/final_small_dataset.csv'
     FileTypes(output_files, small_data_files)
