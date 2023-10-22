@@ -4,7 +4,7 @@ import pandas as pd
 def InputOutputDAT(output_files, data_file):
     # Read csv dataset
     def load_csv(path):
-        return pd.read_csv(path)
+        return pd.read_csv(path, nrows=1500000)
 
 
     # Read parquet dataset

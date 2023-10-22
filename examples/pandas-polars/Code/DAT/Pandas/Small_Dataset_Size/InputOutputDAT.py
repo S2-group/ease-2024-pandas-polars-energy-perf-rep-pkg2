@@ -6,7 +6,7 @@ def InputOutputDAT(output_files, data_file):
 
     # Read csv dataset
     def load_csv(path):
-        return pd.read_csv(path)
+        return pd.read_csv(path, nrows=200000)
 
 
     # Read parquet dataset

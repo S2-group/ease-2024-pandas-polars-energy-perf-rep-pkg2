@@ -4,7 +4,7 @@ import polars as pl
 def InputOutputDAT(output_files, data_file):
     # Read csv dataset
     def load_csv(path):
-        return pl.read_csv(path)
+        return pl.read_csv(path, n_rows=1500000)
 
 
     # Read parquet dataset
