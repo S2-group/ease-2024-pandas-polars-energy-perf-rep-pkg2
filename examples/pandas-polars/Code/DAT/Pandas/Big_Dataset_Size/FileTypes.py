@@ -11,10 +11,12 @@ def FileTypes(output_files, data_files):
     PandasBig_parquet = os.path.join(output_files, "Pandas_Big.parquet")
 
     # Convert the DataFrame to JSON format
-    df.to_json(PandasBig_json)  # Converts each row to a JSON object
+     # Converts first 10% of rows to a JSON object
+    df.head(1500000).to_json(PandasBig_json)
 
     # Convert the DataFrame to parquet format
-    df.to_parquet(PandasBig_parquet)
+    # Converts first 10% of rows to a parquet object
+    df.head(1500000).to_parquet(PandasBig_parquet)
 
 
 for i in range(10):

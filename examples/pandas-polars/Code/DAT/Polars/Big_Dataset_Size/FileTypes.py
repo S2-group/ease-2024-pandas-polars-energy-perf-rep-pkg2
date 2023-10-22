@@ -11,9 +11,9 @@ def FileTypes(output_files, data_file):
         PolarsBig_parquet = os.path.join(output_files, "Polars_Big.parquet")
 
         # Convert the DataFrame to JSON format
-        df.write_json(PolarsBig_json)  # Converts each row to a JSON object
+        df.head(1500000).write_json(PolarsBig_json)  # Converts each row to a JSON object
 
-        df.write_parquet(PolarsBig_parquet)  # Converts each row to a JSON object
+        df.head(1500000).write_parquet(PolarsBig_parquet)  # Converts each row to a JSON object
 
 
 
