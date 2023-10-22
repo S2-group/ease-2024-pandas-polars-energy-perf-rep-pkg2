@@ -11,7 +11,7 @@ print(len(df))
 # Create a sub-dataset with 50,000 rows and save it to a CSV file
 sub_dataset = df.head(50000)
 
-small_duplicated_datset = df.sample(n=450000, replace=True)
+small_duplicated_datset = df.sample(n=4950000, replace=True)
 final_small_dataset = pd.concat([sub_dataset, small_duplicated_datset])
 final_small_dataset.to_csv('final_small_dataset.csv', index=False)
 
