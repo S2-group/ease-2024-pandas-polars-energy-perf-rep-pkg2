@@ -12,11 +12,11 @@ def FileTypes(output_files, data_files):
 
     # Convert the DataFrame to JSON format
      # Converts first 10% of rows to a JSON object
-    df.head(375000).to_json(PandasBig_json)
+    df.head(1500000).to_json(PandasBig_json)
 
     # Convert the DataFrame to parquet format
     # Converts first 10% of rows to a parquet object
-    df.head(375000).to_parquet(PandasBig_parquet)
+    df.head(1500000).to_parquet(PandasBig_parquet)
 
 
 for i in range(1):
