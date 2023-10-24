@@ -42,4 +42,5 @@ def q():
 
 
 if __name__ == "__main__":
-    q()
+    for i in range(10):
+        q()
