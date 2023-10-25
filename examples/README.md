@@ -32,6 +32,7 @@ Different techniques to evaluate the libraries:
     - describe
     - shape
 
+<!-- <a name="setup"></a> -->
 ## Setup
 For setting up the benchmark follow the below steps from the **root** directory:
 

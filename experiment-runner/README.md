@@ -1,5 +1,7 @@
 # Experiment-Runner
 
+This is the README file for the Experiment Runner framework. For the sake of preserving the original information and context, we kept the file unchanged within our project.
+ 
 Experiment Runner is a generic framework to automatically execute measurement-based experiments on any platform. The experiments are user-defined, can be completely customized, and expressed in python code!
 
 *(Experiment Runner is a generalization of our previous successful tool, [Robot Runner](https://github.com/S2-group/robot-runner), for which you can read more in our [ICSE 2021 tool demo paper](https://github.com/S2-group/robot-runner/tree/master/documentation/ICSE_2021.pdf).)*

@@ -16,3 +16,7 @@ that has been reported by Polars, translates into energy efficiency.
 Our contribution specifically studies the energy impact of using
 Pandas and Polars in different scenarios like dataset size, operations
 performed.
+
+# Running the project
+
+For running this project first follow the steps provided in the [DAT Setup Section](examples/README.md#setup) and the [TPCH Setup Section](tpch-pandas-polars/README.md#setup)
