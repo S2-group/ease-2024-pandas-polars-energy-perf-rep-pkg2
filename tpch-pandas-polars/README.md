@@ -1,12 +1,12 @@
 polars-tpch
 ===========
 
-This repo contains the code used for performance evaluation of polars. The benchmarks are TPC-standardised queries and data designed to test the performance of "real" workflows.
+This folder contains the code used for performance evaluation of polars. The benchmarks are TPC-standardised queries and data designed to test the performance of "real" workflows.
 
 From the [TPC website](https://www.tpc.org/tpch/):
 > TPC-H is a decision support benchmark. It consists of a suite of business-oriented ad hoc queries and concurrent data modifications. The queries and the data populating the database have been chosen to have broad industry-wide relevance. This benchmark illustrates decision support systems that examine large volumes of data, execute queries with a high degree of complexity, and give answers to critical business questions.
 
-For setting up the benchmark follow the below steps:
+For setting up the benchmark follow the below steps from the current directory:
 ## Generating TPC-H Data
 <!-- # build tpch-dbgen -->
 ```shell
