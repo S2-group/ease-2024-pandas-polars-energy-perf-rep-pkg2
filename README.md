@@ -29,7 +29,19 @@ pip install -r requirement.txt
 
 # Running the project
 
-- For running the TPCH experiment from Polars follow the steps provided in the [TPCH Setup](tpch-pandas-polars/README.md#setup)
+- For running the TPCH experiment from Polars follow these steps:
+    1. Setup the projects using the instructions provided in the [TPCH Setup](tpch-pandas-polars/README.md#setup)
+    2. Run the following from the ***root*** directory:
+    
+```shell
+        python3 experiment-runner/ tpch-pandas-polars/tpch/RunnerConfig.py
+```
 
-- For running our experiment operating with differen data analysis tasks follow the steps provided in the [DAT Setup](examples/README.md#setup) 
+- For running our experiment operating with differen data analysis tasks follow these steps:
+    1. Setup the projects using the instructions provided in the [DAT Setup](examples/README.md#setup)
+    2. Run the following from the ***root*** directory:
+
+```shell
+        python3 experiment-runner/ examples/pandas-polars/RunnerConfig-Pandas-Polars.py
+```
 
