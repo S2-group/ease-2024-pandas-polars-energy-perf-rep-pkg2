@@ -46,3 +46,6 @@ pip install -r requirement.txt
         python3 experiment-runner/ examples/pandas-polars/RunnerConfig-Pandas-Polars.py
 ```
 
+# Data Analysis
+
+For performing statistical tests on the data generated from the experiment follow the instructions provided in [Data Analysis](data-analysis\README.md)
