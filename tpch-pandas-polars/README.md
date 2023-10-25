@@ -6,18 +6,26 @@ This repo contains the code used for performance evaluation of polars. The bench
 From the [TPC website](https://www.tpc.org/tpch/):
 > TPC-H is a decision support benchmark. It consists of a suite of business-oriented ad hoc queries and concurrent data modifications. The queries and the data populating the database have been chosen to have broad industry-wide relevance. This benchmark illustrates decision support systems that examine large volumes of data, execute queries with a high degree of complexity, and give answers to critical business questions.
 
+For setting up the benchmark follow the below steps:
 ## Generating TPC-H Data
-
-### Project setup
-
+<!-- # build tpch-dbgen -->
 ```shell
+cd tpch-dbgen
+make
+cd ..
+make tables_scale_1
+make tables_scale_10
+
+# ## Project setup
+
+# ```shell
 # clone this repository
-git clone https://github.com/pola-rs/tpch.git
-cd tpch/tpch-dbgen
+# git clone https://github.com/pola-rs/tpch.git
+# cd tpch/tpch-dbgen
 
 # build tpch-dbgen
-make
-```
+# make
+
 
 Notes:
 
@@ -33,16 +41,16 @@ Notes:
   To fix this, change the import statement `#include <malloc.h>` to `#include <sys/malloc.h>` in the files where error
   is reported (`bm_utils.c` and `varsub.c`) and then re-run the command `make`.
 
-### Execute
+<!-- ### Execute
 
-```shell
+<!-- ```shell
 # change directory to the root of the repository
 cd ../
 make run
-```
+``` -->
 
-This will do the following,
+<!-- This will do the following,
 
 - Create a new virtual environment with all required dependencies.
 - Generate data for benchmarks.
-- Run the benchmark suite.
+- Run the benchmark suite. --> 
