@@ -48,4 +48,4 @@ pip install -r requirement.txt
 
 # Data Analysis
 
-For performing statistical tests on the data generated from the experiment follow the instructions provided in [Data Analysis](data-analysis\README.md)
+For performing statistical tests on the data generated from the experiment follow the instructions provided in [Data Analysis](data-analysis/README.md)
