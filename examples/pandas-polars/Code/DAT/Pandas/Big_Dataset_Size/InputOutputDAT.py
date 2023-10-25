@@ -16,15 +16,15 @@ def InputOutputDAT(output_files, data_file):
     def load_json(path):
         return pd.read_json(path)
 
-
+    # Save to csv
     def save_csv(df, path):
         return df.to_csv(path)
 
-
+    # Save to json
     def save_json(df, path):
         return df.to_json(path)
 
-
+    # Save to json
     def save_parquet(df, path):
         return df.to_parquet(path)
 
@@ -47,6 +47,7 @@ def InputOutputDAT(output_files, data_file):
     save_json(jdf, new_JSON)
     save_parquet(pdf, new_parque)
 
+# generating the outputfiles
 
 for i in range(10):
     output_files = './examples/pandas-polars/Code/DAT/Pandas/Big_Dataset_Size/OUTPUT_FILES'

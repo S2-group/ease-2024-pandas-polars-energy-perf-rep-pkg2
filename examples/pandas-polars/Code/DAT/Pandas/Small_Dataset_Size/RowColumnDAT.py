@@ -1,33 +1,30 @@
 import pandas as pd
 
-
+# drop Operations 
 def drop(df, cnameArray):
     return df.drop(columns=cnameArray)
 
-
+# groupby Operations 
 def groupby(df, cname):
     print(df.groupby(cname).agg('count'))
     return df.groupby(cname).agg('count')
 
 
-## do we wanna do count??
+# merge Operations
 
 
 def merge(df1, df2, on=None):
-    # KARO - I used pd.concat with an "outer" join to concatenate the two DataFrames along the rows. 
+
     # This operation allows duplications and combines all rows from both DataFrames.
     return df1.merge(df2, how="cross")
     
-    # if on:
-    #     return pd.merge(df1, df2, on=on)
-    # else:
-    #     return pd.merge(df1, df2)
 
 
+#sort operations
 def sort(df, cname):
     return df.sort_values(by=[cname])
 
-
+#concat operations
 def concat_dataframes(df1, df2):
     return pd.concat([df1, df2])
 

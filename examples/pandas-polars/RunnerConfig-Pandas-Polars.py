@@ -75,6 +75,7 @@ class RunnerConfig:
 
         output.console_log("Custom config loaded")
 
+# Here the run numbers the factors and the run numbers of the experiment are defined
     def create_run_table_model(self) -> RunTableModel:
         """Create and return the run_table model here. A run_table is a List (rows) of tuples (columns),
         representing each run performed"""
@@ -96,6 +97,7 @@ class RunnerConfig:
         output.console_log("Config.before_experiment() called!")
 
     def before_run(self) -> None:
+        # observing the starting time of the run
         self.timestamp_start = datetime.now()
         """Perform any activity required before starting a run.
         No context is available here as the run is not yet active (BEFORE RUN)"""
@@ -105,7 +107,7 @@ class RunnerConfig:
         For example, starting the target system to measure.
         Activities after starting the run should also be performed here."""
 
-        ### Mehdi & Pouyeh attempt
+        ### Setting up and starting the runs on various factors
         library = context.run_variation['library']
         dataframe_size = context.run_variation['dataframe_size']
         dat_filename = context.run_variation['DAT']
@@ -128,9 +130,11 @@ class RunnerConfig:
         self.target = subprocess.Popen(['python3', f'examples/pandas-polars/Code/DAT/{library}/{folder}/{dat_filename}.py'])
 
 
-        print("hellooooooo I am here", self.target.pid)
+       
 
         output.console_log("Config.start_run() called!")
+
+# Powerjoular is used for performing the measurements
 
     def start_measurement(self, context: RunnerContext) -> None:
         """Perform any activity required for starting measurements."""
@@ -149,8 +153,8 @@ class RunnerConfig:
     def interact(self, context: RunnerContext) -> None:
         """Perform any interaction with the running target system here, or block here until the target finishes."""
 
-        # No interaction. We just run it for XX seconds.
-        # Another example would be to wait for the target to finish, e.g. via `self.target.wait()`
+        # waiting target to finish 
+
         output.console_log("Running program for 20 seconds")
         self.target.wait()
 
@@ -168,6 +172,7 @@ class RunnerConfig:
         Activities after stopping the run should also be performed here."""
         self.target.kill()
         self.target.wait()
+        # observing the ending time of the run
         self.timestamp_end = datetime.now()
         output.console_log("Config.stop_run() called!")
 
@@ -175,8 +180,8 @@ class RunnerConfig:
         """Parse and process any measurement data here.
         You can also store the raw measurement data under `context.run_dir`
         Returns a dictionary with keys `self.run_table_model.data_columns` and their values populated"""
-        # powerjoular.csv - Power consumption of the whole system
-        # powerjoular.csv-PID.csv - Power consumption of that specific process
+        # powerjoular.csv file shows the power consumption of the whole system
+        # powerjoular.csv-PID.csv shows the power consumption of that specific process
         psdf = pd.DataFrame(columns=['cpu_usage', 'memory_usage'])
         for i, l in enumerate(self.performance_profiler.stdout.readlines()):
             decoded_line = l.decode('ascii').strip()

@@ -21,7 +21,7 @@ def MissingDataDAT(output_files,data_files):
 
     ############## COUNT MISSING VALUES AND REMOVE THEM ###############
 
-    #count_ones_before_fill = (df_fill == 1).values.sum()
+
 
     # Fill None with 0
     df_fill.fillna(1, inplace=True) 
@@ -29,7 +29,7 @@ def MissingDataDAT(output_files,data_files):
     # Check for missing data (None values)
     missing_counts_after_fill = df_fill.isnull().sum().sum()
 
-    #count_ones_after_fill = (df_fill == 1).values.sum()
+   
 
     print(f"Missing Counts before Drop: {missing_counts_before_drop},"+
         f"\nAFTER: {missing_counts_after_drop}"+

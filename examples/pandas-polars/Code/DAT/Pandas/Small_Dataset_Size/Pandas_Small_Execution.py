@@ -15,16 +15,6 @@ def execute_files(n_times):
         small_data_files = './examples/pandas-polars/Data/final_small_dataset.csv'
 
 
-        # for i in range(n_times):
-        #     for filename in os.listdir(output_files):
-        #         file_path = os.path.join(output_files, filename)
-        #         try:
-        #             if os.path.isfile(file_path) or os.path.islink(file_path):
-        #                 os.unlink(file_path)
-        #             elif os.path.isdir(file_path):
-        #                 shutil.rmtree(file_path)
-        #         except Exception as e:
-        #             print('Failed to delete %s. Reason: %s' % (file_path, e))
         FileTypes(output_files, small_data_files)
         MissingDataDAT(output_files, small_data_files)
         StatisticalAggregationMinMaxUnique(output_files, small_data_files)

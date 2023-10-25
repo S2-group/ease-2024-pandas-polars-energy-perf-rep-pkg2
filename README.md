@@ -22,7 +22,8 @@ Our project contains two experiments which can also be run separetly.
 # Requirements
 
 1. Before you begin, make sure you have Python 3 installed on your system. This project requires Python 3 to run. [Link to Inatall Python](https://www.python.org/downloads/)
-2. Install the project requiremenst in the ***current*** using the following:
+2. Install Powerjoular following the instructions provided in [Powerjoular Repository](https://github.com/joular/powerjoular)
+3. Install the project requiremenst in the ***current*** using the following:
 ```shell
 pip install -r requirement.txt
 ```

@@ -57,6 +57,8 @@ class RunnerConfig:
         self.run_table_model = None  # Initialized later
         output.console_log("Custom config loaded")
 
+# Here the run numbers the factors and the run numbers of the experiment are defined
+
     def create_run_table_model(self) -> RunTableModel:
         """Create and return the run_table model here. A run_table is a List (rows) of tuples (columns),
         representing each run performed"""
@@ -106,14 +108,14 @@ class RunnerConfig:
 
         
         os.environ["SCALE_FACTOR"] = size
-        # start the target
+        ### starting the runs on various factors
         self.target = subprocess.Popen(['python3', '-m', f'{module}.{DAT}'], cwd=self.ROOT_DIR
         )
 
         # Configure the environment based on the current variation
        # subprocess.check_call(shlex.split(f'cpulimit -b -p {self.target.pid} --limit {cpu_limit}'))
         
-
+# Powerjoular is used for performing the measurements
     def start_measurement(self, context: RunnerContext) -> None:
         """Perform any activity required for starting measurements."""
 
@@ -131,8 +133,8 @@ class RunnerConfig:
     def interact(self, context: RunnerContext) -> None:
         """Perform any interaction with the running target system here, or block here until the target finishes."""
 
-        # No interaction. We just run it for XX seconds.
-        # Another example would be to wait for the target to finish, e.g. via `self.target.wait()`
+        # waiting target to finish 
+
         output.console_log("Running program for 20 seconds")
         self.target.wait()
 
@@ -158,8 +160,9 @@ class RunnerConfig:
         You can also store the raw measurement data under `context.run_dir`
         Returns a dictionary with keys `self.run_table_model.data_columns` and their values populated"""
 
-        # powerjoular.csv - Power consumption of the whole system
-        # powerjoular.csv-PID.csv - Power consumption of that specific process
+        # powerjoular.csv file shows the power consumption of the whole system
+        # powerjoular.csv-PID.csv shows the power consumption of that specific process
+
         psdf = pd.DataFrame(columns=['cpu_usage', 'memory_usage'])
         for i, l in enumerate(self.performance_profiler.stdout.readlines()):
              decoded_line = l.decode('ascii').strip()
@@ -178,7 +181,6 @@ class RunnerConfig:
             filtered_df[column] = filtered_df[column].astype(float)
         filtered_df.to_csv(output_file, index=False)
 
-        # print(f"Filtered and saved {len(filtered_df)} rows with numeric values.")
         run_data = {
                     'execution_time': (self.timestamp_end - self.timestamp_start).total_seconds(),
                     'cpu_usage': round(psdf['cpu_usage'].mean(), 3),
