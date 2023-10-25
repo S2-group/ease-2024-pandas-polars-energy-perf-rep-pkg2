@@ -16,16 +16,6 @@ cd ..
 make tables_scale_1
 make tables_scale_10
 
-# ## Project setup
-
-# ```shell
-# clone this repository
-# git clone https://github.com/pola-rs/tpch.git
-# cd tpch/tpch-dbgen
-
-# build tpch-dbgen
-# make
-
 
 Notes:
 
