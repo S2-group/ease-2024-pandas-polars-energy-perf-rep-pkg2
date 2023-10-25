@@ -1,5 +1,5 @@
-# Pandas vs Polars: A Comparison of Energy Efficiency and Performance
---- 
+<!-- # Pandas vs Polars: A Comparison of Energy Efficiency and Performance
+---  -->
 
 ## Data Analysis Tasks Benchmarking
 > This folder contains the scripts we wrote in order to the compare energy efficiency of pandas and polars alongside any possible correlations between the energy efficiency and performance in the two libraries. The scripts contain differnt types of data analysis tasks commonly used by data scientists and the chosen tasks inspired by the following study: [Link to the study](https://ieeexplore.ieee.org/document/10174114)

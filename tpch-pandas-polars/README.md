@@ -1,5 +1,5 @@
-polars-tpch
-===========
+<!-- polars-tpch
+=========== -->
 ## Polars TPCH Benchmarking
 This folder contains the code used for performance evaluation of polars. The benchmarks are TPC-standardised queries and data designed to test the performance of "real" workflows.
 
