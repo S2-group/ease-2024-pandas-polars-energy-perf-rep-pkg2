@@ -19,9 +19,11 @@ if (!require("e1071")) install.packages("e1071")
 if (!require("tidyverse")) install.packages("tidyverse")
 if (!require("dplyr")) install.packages("dplyr")
 if (!require("effsize")) install.packages("effsize")
+
 library("car")
 library(e1071)
 library(effsize)
+library(cowplot)
 library(ggplot2)
 library(tidyverse)
 library(dplyr)
@@ -115,7 +117,7 @@ theme_minimal()
 violin_boxplot <- function(dataset, title, x, y) {
 ggplot(dataset, aes(x = Distribution, y = Values, fill = Distribution)) +
 geom_violin(alpha = 0.5) +
-geom_boxplot(width = 0.03, outlier.shape = NA) +
+geom_boxplot(width = 0.045, outlier.shape = NA) +
 scale_fill_manual(values = c("Pandas" = "lightblue", "Polars" = "pink")) +
 labs(
 title = title,
@@ -136,10 +138,19 @@ Distribution = c(rep("Pandas", length(Pandas_Data_Big$energy_usage)), rep("Polar
 Values = c(Pandas_Data_Big$energy_usage, Polars_Data_Big$energy_usage)
 )
 # Make the Density/Violin Plots
-density_plot(dataset=Small_Block, title="Density Plot of Energy Usage for Dataframe Size: Small", x="Energy Usage", y="Density")
-density_plot(dataset=Big_Block, title="Density Plot of Energy Usage for Dataframe Size: Big", x="Energy Usage", y="Density")
-violin_boxplot(dataset=Small_Block, title="Violin Plot of Energy Usage for Dataframe Size: Small", x="Energy Usage", y="Density")
-violin_boxplot(dataset=Big_Block, title="Violin Plot of Energy Usage for Dataframe Size: Big", x="Energy Usage", y="Density")
+
+density_plot_small <- density_plot(dataset=Small_Block, title="DAT - Density Plot - Small", x="Energy Usage", y="Density")
+density_plot_big <- density_plot(dataset=Big_Block, title="DAT - Density Plot - Big", x="Energy Usage", y="Density")
+violin_plot_small <- violin_boxplot(dataset=Small_Block, title="DAT - Violin Plot - Small", x="Energy Usage", y="Density")
+violin_plot_big <- violin_boxplot(dataset=Big_Block, title="DAT - Violin Plot - Big", x="Energy Usage", y="Density")
+
+# Arrange the plots in a 4x4 grid
+grid <- plot_grid(density_plot_small, density_plot_big, violin_plot_small, violin_plot_big, nrow = 2, labels = "AUTO")
+
+# Save the grid of plots as a PNG image
+ggsave(filename = "./Data/Statistical_Images/grid_of_normality_TPCH.png", plot = grid, width = 10, height = 8, units = "in")
+
+
 
 ```
 
@@ -173,12 +184,13 @@ pandas_skew <- skewness(pandas)
 polars_skew <- skewness(polars)
 
 results_skew_pandas <- check_skew(pandas_skew)
-results_skew_pandas <- check_skew(polars_skew)
-
+results_skew_polars <- check_skew(polars_skew)
+cat(name," pandas: ", results_skew_pandas, "\n")
+cat(name," polars: ", results_skew_polars, "\n")
 
 # check how much the data is skewed in what direction and apply transformation according to the skew: 
 
-if(results_skew_pandas == results_skew_pandas){
+if(results_skew_pandas == results_skew_polars){
   if(results_skew_pandas == "Positively Skewed"){
   # sqrt(small skew)/log(larger skew) for positive skew transformation
   pandas_sqrt = sqrt(pandas)
@@ -215,6 +227,8 @@ if(results_skew_pandas == results_skew_pandas){
   cat(name, " Pandas before transformation: ", shapiro_Pandas$p.value, "power 2: ",shapiro_Pandas_power$p.value, "power 3: ",shapiro_Pandas_power3$p.value, "\n")
   cat(name, " Pandas before transformation: ", shapiro_Polars$p.value, "power 2: ",shapiro_Polars_power$p.value, "power 3: ",shapiro_Polars_power3$p.value, "\n")
   }
+} else{
+  print("pandas and polars datasets are not skewed similarly which is why no transformation is applied")
 }
 # Determine skewness type
 
