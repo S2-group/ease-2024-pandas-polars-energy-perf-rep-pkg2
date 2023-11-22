@@ -634,25 +634,20 @@ make_scatter_plot <- function(dataset, x_var, y_var, title){
     )
 }
 
-# Create scatter plots with correlation line
-scatter_plot_cpu_Polars_Big <- make_scatter_plot_with_correlation_blue(Polars_Data_Big, "energy_usage", "cpu_usage", "Scatterplot: Energy Usage vs. CPU Usage (Polars Big Dataset)")
-scatter_plot_mem_Polars_Big <- make_scatter_plot_with_correlation_blue(Polars_Data_Big, "energy_usage", "memory_usage", "Scatterplot: Energy Usage vs. Memory Usage (Polars Big Dataset)")
-scatter_plot_exe_Polars_Big <- make_scatter_plot_with_correlation_blue(Polars_Data_Big, "energy_usage", "execution_time", "Scatterplot: Energy Usage vs. Execution Time (Polars Big Dataset)")
+# Create scatter plots with correlation line and blue color
+scatter_plot_cpu_Polars_Small <- make_scatter_plot_with_correlation_blue(Polars_Data_Small, "energy_usage", "cpu_usage", "Polars - Small Dataframe Size")
+scatter_plot_mem_Polars_Small <- make_scatter_plot_with_correlation_blue(Polars_Data_Small, "energy_usage", "memory_usage", "Polars - Small Dataframe Size")
+scatter_plot_exe_Polars_Small <- make_scatter_plot_with_correlation_blue(Polars_Data_Small, "energy_usage", "execution_time", "Polars - Small Dataframe Size")
 
 # Create scatter plots with correlation line and blue color
-scatter_plot_cpu_Polars_Small <- make_scatter_plot_with_correlation_blue(Polars_Data_Small, "energy_usage", "cpu_usage", "Scatterplot: Energy Usage vs. CPU Usage (Polars Small Dataset)")
-scatter_plot_mem_Polars_Small <- make_scatter_plot_with_correlation_blue(Polars_Data_Small, "energy_usage", "memory_usage", "Scatterplot: Energy Usage vs. Memory Usage (Polars Small Dataset)")
-scatter_plot_exe_Polars_Small <- make_scatter_plot_with_correlation_blue(Polars_Data_Small, "energy_usage", "execution_time", "Scatterplot: Energy Usage vs. Execution Time (Polars Small Dataset)")
+scatter_plot_cpu_Pandas_Big <- make_scatter_plot_with_correlation(Pandas_Data_Big, "energy_usage", "cpu_usage", "Pandas - Big Dataframe Size")
+scatter_plot_mem_Pandas_Big <- make_scatter_plot_with_correlation(Pandas_Data_Big, "energy_usage", "memory_usage", "Pandas - Big Dataframe Size")
+scatter_plot_exe_Pandas_Big <- make_scatter_plot_with_correlation(Pandas_Data_Big, "energy_usage", "execution_time", "Pandas - Big Dataframe Size")
 
 # Create scatter plots with correlation line and blue color
-scatter_plot_cpu_Pandas_Big <- make_scatter_plot_with_correlation(Pandas_Data_Big, "energy_usage", "cpu_usage", "Scatterplot: Energy Usage vs. CPU Usage (Pandas Big Dataset)")
-scatter_plot_mem_Pandas_Big <- make_scatter_plot_with_correlation(Pandas_Data_Big, "energy_usage", "memory_usage", "Scatterplot: Energy Usage vs. Memory Usage (Pandas Big Dataset)")
-scatter_plot_exe_Pandas_Big <- make_scatter_plot_with_correlation(Pandas_Data_Big, "energy_usage", "execution_time", "Scatterplot: Energy Usage vs. Execution Time (Pandas Big Dataset)")
-
-# Create scatter plots with correlation line and blue color
-scatter_plot_cpu_Pandas_Small <- make_scatter_plot_with_correlation(Pandas_Data_Small, "energy_usage", "cpu_usage", "Scatterplot: Energy Usage vs. CPU Usage (Pandas Small Dataset)")
-scatter_plot_mem_Pandas_Small <- make_scatter_plot_with_correlation(Pandas_Data_Small, "energy_usage", "memory_usage", "Scatterplot: Energy Usage vs. Memory Usage (Pandas Small Dataset)")
-scatter_plot_exe_Pandas_Small <- make_scatter_plot_with_correlation(Pandas_Data_Small, "energy_usage", "execution_time", "Scatterplot: Energy Usage vs. Execution Time (Pandas Small Dataset)")
+scatter_plot_cpu_Pandas_Small <- make_scatter_plot_with_correlation(Pandas_Data_Small, "energy_usage", "cpu_usage", "Pandas - Small Dataframe Size")
+scatter_plot_mem_Pandas_Small <- make_scatter_plot_with_correlation(Pandas_Data_Small, "energy_usage", "memory_usage", "Pandas - Small Dataframe Size")
+scatter_plot_exe_Pandas_Small <- make_scatter_plot_with_correlation(Pandas_Data_Small, "energy_usage", "execution_time", "Pandas - Small Dataframe Size)")
 
 # Save the plots
 
@@ -664,6 +659,7 @@ grid_MEM <- plot_grid(scatter_plot_mem_Polars_Big , scatter_plot_mem_Polars_Smal
 ggsave(filename = "./Data/Statistical_Images/scatter_plots_cpu_usage_DAT.png", plot = grid_CPU, width = 10, height = 8, units = "in")
 ggsave(filename = "./Data/Statistical_Images/scatter_plots_execution_time_DAT.png", plot = grid_EXE, width = 10, height = 8, units = "in")
 ggsave(filename = "./Data/Statistical_Images/scatter_plots_memory_usage_DAT.png", plot = grid_MEM, width = 10, height = 8, units = "in")
+
 
 
 
@@ -692,18 +688,18 @@ scatter_plot_exe_Pandas_Small
 ## Hypothesis Testing
 
 ```{r non-parametric test spearman rank}
-correlation_cpu_Pandas_Big <- cor.test(Pandas_Data_Big$energy_usage, Pandas_Data_Big$cpu_usage, method = "spearman")
-correlation_mem_Pandas_Big <- cor.test(Pandas_Data_Big$energy_usage, Pandas_Data_Big$memory_usage, method = "spearman")
-correlation_exe_Pandas_Big <- cor.test(Pandas_Data_Big$energy_usage, Pandas_Data_Big$execution_time, method = "spearman")
-correlation_cpu_Pandas_Small <- cor.test(Pandas_Data_Small$energy_usage, Pandas_Data_Small$cpu_usage, method = "spearman")
-correlation_mem_Pandas_Small <- cor.test(Pandas_Data_Small$energy_usage, Pandas_Data_Small$memory_usage, method = "spearman")
-correlation_exe_Pandas_Small <- cor.test(Pandas_Data_Small$energy_usage, Pandas_Data_Small$execution_time, method = "spearman")
-correlation_cpu_Polars_Big <- cor.test(Polars_Data_Big$energy_usage, Polars_Data_Big$cpu_usage, method = "spearman")
-correlation_mem_Polars_Big <- cor.test(Polars_Data_Big$energy_usage, Polars_Data_Big$memory_usage, method = "spearman")
-correlation_exe_Polars_Big <- cor.test(Polars_Data_Big$energy_usage, Polars_Data_Big$execution_time, method = "spearman")
-correlation_cpu_Polars_Small <- cor.test(Polars_Data_Small$energy_usage, Polars_Data_Small$cpu_usage, method = "spearman")
-correlation_mem_Polars_Small <- cor.test(Polars_Data_Small$energy_usage, Polars_Data_Small$memory_usage, method = "spearman")
-correlation_exe_Polars_Small <- cor.test(Polars_Data_Small$energy_usage, Polars_Data_Small$execution_time, method = "spearman")
+correlation_cpu_Pandas_Big <- cor.test(Pandas_Data_Big$energy_usage, Pandas_Data_Big$cpu_usage, method = "spearman",conf.level = 0.95)
+correlation_mem_Pandas_Big <- cor.test(Pandas_Data_Big$energy_usage, Pandas_Data_Big$memory_usage, method = "spearman",conf.level = 0.95)
+correlation_exe_Pandas_Big <- cor.test(Pandas_Data_Big$energy_usage, Pandas_Data_Big$execution_time, method = "spearman",conf.level = 0.95)
+correlation_cpu_Pandas_Small <- cor.test(Pandas_Data_Small$energy_usage, Pandas_Data_Small$cpu_usage, method = "spearman",conf.level = 0.95)
+correlation_mem_Pandas_Small <- cor.test(Pandas_Data_Small$energy_usage, Pandas_Data_Small$memory_usage, method = "spearman",conf.level = 0.95)
+correlation_exe_Pandas_Small <- cor.test(Pandas_Data_Small$energy_usage, Pandas_Data_Small$execution_time, method = "spearman",conf.level = 0.95)
+correlation_cpu_Polars_Big <- cor.test(Polars_Data_Big$energy_usage, Polars_Data_Big$cpu_usage, method = "spearman",conf.level = 0.95)
+correlation_mem_Polars_Big <- cor.test(Polars_Data_Big$energy_usage, Polars_Data_Big$memory_usage, method = "spearman",conf.level = 0.95)
+correlation_exe_Polars_Big <- cor.test(Polars_Data_Big$energy_usage, Polars_Data_Big$execution_time, method = "spearman",conf.level = 0.95)
+correlation_cpu_Polars_Small <- cor.test(Polars_Data_Small$energy_usage, Polars_Data_Small$cpu_usage, method = "spearman",conf.level = 0.95)
+correlation_mem_Polars_Small <- cor.test(Polars_Data_Small$energy_usage, Polars_Data_Small$memory_usage, method = "spearman",conf.level = 0.95)
+correlation_exe_Polars_Small <- cor.test(Polars_Data_Small$energy_usage, Polars_Data_Small$execution_time, method = "spearman",conf.level = 0.95)
 
 # # Extract p-value from the test result
 # p_value_cpu_Pandas_Big <- correlation_cpu_Pandas_Small$p.value
@@ -754,7 +750,7 @@ check_significance(correlation_exe_Polars_Big, "exe_Polars_Big")
 
 ```{r Results of correlation alterantive presenatation}
 library(knitr)
-
+print( correlation_cpu_Pandas_Small$conf.int)
 # Create a data frame to store the results
 results_df <- data.frame(
   Name = c(
@@ -798,6 +794,20 @@ results_df <- data.frame(
     correlation_cpu_Polars_Big$p.value,
     correlation_mem_Polars_Big$p.value,
     correlation_exe_Polars_Big$p.value
+  ),
+  Confidence = c(
+    correlation_cpu_Pandas_Small$conf.int,
+    correlation_mem_Pandas_Small$conf.int,
+    correlation_exe_Pandas_Small$conf.int,
+    correlation_cpu_Pandas_Big$conf.int,
+    correlation_mem_Pandas_Big$conf.int,
+    correlation_exe_Pandas_Big$conf.int,
+    correlation_cpu_Polars_Small$conf.int,
+    correlation_mem_Polars_Small$conf.int,
+    correlation_exe_Polars_Small$conf.int,
+    correlation_cpu_Polars_Big$conf.int,
+    correlation_mem_Polars_Big$conf.int,
+    correlation_exe_Polars_Big$conf.int
   )
 )
 

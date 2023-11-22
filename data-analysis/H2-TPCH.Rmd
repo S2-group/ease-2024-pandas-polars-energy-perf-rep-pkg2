@@ -521,52 +521,65 @@ transform_pairs_towards_normality(Pandas_Data_Small$execution_time,Pandas_Data_S
 
 
 
-```{r Scatter plots for Polars Big}
-make_scatter_plot_cpu <- function(dataset, title){
-  ggplot(dataset, aes(x = energy_usage, y = cpu_usage)) +
-  geom_point() +
-  labs(
-    title = title,
-    x = "energy usage",
-    y = "cpu usage"
-  )
+```{r}
+# Function to create scatter plot with correlation line
+make_scatter_plot_with_correlation <- function(dataset, x_var, y_var, title){
+  ggplot(dataset, aes(x = !!sym(x_var), y = !!sym(y_var))) +
+    geom_point() +
+    geom_smooth(method = "lm", se = FALSE, color = "pink") +  # Add correlation line
+    theme_minimal() +  # Make the background white
+    labs(
+      title = title,
+      x = x_var,
+      y = y_var
+    )
 }
 
-make_scatter_plot_mem <- function(dataset, title){
-  ggplot(dataset, aes(x = energy_usage, y = memory_usage)) +
-  geom_point() +
-  labs(
-    title = title,
-    x = "energy usage",
-    y = "memory usage"
-  )
+make_scatter_plot_with_correlation_blue <- function(dataset, x_var, y_var, title){
+  ggplot(dataset, aes(x = !!sym(x_var), y = !!sym(y_var))) +
+    geom_point() +
+    geom_smooth(method = "lm", se = FALSE, color = "lightblue") +  # Add correlation line
+    theme_minimal() +  # Make the background white
+    labs(
+      title = title,
+      x = x_var,
+      y = y_var
+    )
 }
 
-make_scatter_plot_exe <- function(dataset, title){
-  ggplot(dataset, aes(x = energy_usage, y = execution_time)) +
-  geom_point() +
-  labs(
-    title = title,
-    x = "energy usage",
-    y = "execution time"
-  )
+# Function to create scatter plot without correlation line
+make_scatter_plot <- function(dataset, x_var, y_var, title){
+  ggplot(dataset, aes(x = !!sym(x_var), y = !!sym(y_var))) +
+    geom_point() +
+    theme_minimal() +  # Make the background white
+    labs(
+      title = title,
+      x = x_var,
+      y = y_var
+    )
 }
 
-scatter_plot_cpu_Polars_Big <- make_scatter_plot_cpu(Polars_Data_Big,  "Scatterplot: Energy Usage vs. CPU Usage (Polars Big Dataset)")
-scatter_plot_mem_Polars_Big <- make_scatter_plot_mem(Polars_Data_Big,  "Scatterplot: Energy Usage vs. Memory Usage (Polars Big Dataset)")
-scatter_plot_exe_Polars_Big <- make_scatter_plot_exe(Polars_Data_Big,  "Scatterplot: Energy Usage vs. Execution Time (Polars Big Dataset)")
+# Create scatter plots with correlation line
+scatter_plot_cpu_Polars_Big <- make_scatter_plot_with_correlation_blue(Polars_Data_Big, "energy_usage", "cpu_usage", "Polars - Big Dataframe Size")
+scatter_plot_mem_Polars_Big <- make_scatter_plot_with_correlation_blue(Polars_Data_Big, "energy_usage", "memory_usage", "Polars - Big Dataframe Size")
+scatter_plot_exe_Polars_Big <- make_scatter_plot_with_correlation_blue(Polars_Data_Big, "energy_usage", "execution_time", "Polars - Big Dataframe Size")
 
-scatter_plot_cpu_Polars_Small <- make_scatter_plot_cpu(Polars_Data_Small,  "Scatterplot: Energy Usage vs. CPU Usage (Polars Small Dataset)")
-scatter_plot_mem_Polars_Small <- make_scatter_plot_mem(Polars_Data_Small,  "Scatterplot: Energy Usage vs. Memory Usage (Polars Small Dataset)")
-scatter_plot_exe_Polars_Small <- make_scatter_plot_exe(Polars_Data_Small,  "Scatterplot: Energy Usage vs. Execution Time (Polars Small Dataset)")
+# Create scatter plots with correlation line and blue color
+scatter_plot_cpu_Polars_Small <- make_scatter_plot_with_correlation_blue(Polars_Data_Small, "energy_usage", "cpu_usage", "Polars - Small Dataframe Size")
+scatter_plot_mem_Polars_Small <- make_scatter_plot_with_correlation_blue(Polars_Data_Small, "energy_usage", "memory_usage", "Polars - Small Dataframe Size")
+scatter_plot_exe_Polars_Small <- make_scatter_plot_with_correlation_blue(Polars_Data_Small, "energy_usage", "execution_time", "Polars - Small Dataframe Size")
 
-scatter_plot_cpu_Pandas_Big <- make_scatter_plot_cpu(Pandas_Data_Big,  "Scatterplot: Energy Usage vs. CPU Usage (Pandas Big Dataset)")
-scatter_plot_mem_Pandas_Big <- make_scatter_plot_mem(Pandas_Data_Big,  "Scatterplot: Energy Usage vs. Memory Usage (Pandas Big Dataset)")
-scatter_plot_exe_Pandas_Big <- make_scatter_plot_exe(Pandas_Data_Big,  "Scatterplot: Energy Usage vs. Execution Time (Pandas Big Dataset)")
+# Create scatter plots with correlation line and blue color
+scatter_plot_cpu_Pandas_Big <- make_scatter_plot_with_correlation(Pandas_Data_Big, "energy_usage", "cpu_usage", "Pandas - Big Dataframe Size")
+scatter_plot_mem_Pandas_Big <- make_scatter_plot_with_correlation(Pandas_Data_Big, "energy_usage", "memory_usage", "Pandas - Big Dataframe Size")
+scatter_plot_exe_Pandas_Big <- make_scatter_plot_with_correlation(Pandas_Data_Big, "energy_usage", "execution_time", "Pandas - Big Dataframe Size")
 
-scatter_plot_cpu_Pandas_Small <- make_scatter_plot_cpu(Pandas_Data_Small,  "Scatterplot: Energy Usage vs. CPU Usage (Pandas Small Dataset)")
-scatter_plot_mem_Pandas_Small <- make_scatter_plot_mem(Pandas_Data_Small,  "Scatterplot: Energy Usage vs. Memory Usage (Pandas Small Dataset)")
-scatter_plot_exe_Pandas_Small <- make_scatter_plot_exe(Pandas_Data_Small,  "Scatterplot: Energy Usage vs. Execution Time (Pandas Small Dataset)")
+# Create scatter plots with correlation line and blue color
+scatter_plot_cpu_Pandas_Small <- make_scatter_plot_with_correlation(Pandas_Data_Small, "energy_usage", "cpu_usage", "Pandas - Small Dataframe Size")
+scatter_plot_mem_Pandas_Small <- make_scatter_plot_with_correlation(Pandas_Data_Small, "energy_usage", "memory_usage", "Pandas - Small Dataframe Size")
+scatter_plot_exe_Pandas_Small <- make_scatter_plot_with_correlation(Pandas_Data_Small, "energy_usage", "execution_time", "Pandas - Small Dataframe Size)")
+
+# Save the plots
 
 grid_CPU <- plot_grid(scatter_plot_cpu_Polars_Big , scatter_plot_cpu_Polars_Small, scatter_plot_cpu_Pandas_Big, scatter_plot_cpu_Pandas_Small, nrow = 2, labels = "AUTO")
 grid_EXE <- plot_grid(scatter_plot_exe_Polars_Big , scatter_plot_exe_Polars_Small, scatter_plot_mem_Pandas_Big, scatter_plot_exe_Pandas_Small, nrow = 2, labels = "AUTO")
